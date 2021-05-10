@@ -5,12 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import * as actions from "../reducers/user";
+import { form, message } from "../constants";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().min(4).max(15).required(),
-  checkPassword: yup.string().oneOf([yup.ref("password"), null]).required(),
+  [form.name]: yup.string().required(),
+  [form.email]: yup.string().email().required(),
+  [form.password]: yup.string().min(4).max(15).required(),
+  [form.checkPassword]: yup.string().oneOf([yup.ref(form.password), null]).required(),
 });
 
 const Signup = () => {
@@ -27,21 +28,21 @@ const Signup = () => {
     <div>
       <h1>Sign up to your account.</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
-        <input type="text" {...register("name")} />
-        <span>{errors.name && "이름 형식이 맞지 않습니다."}</span>
+        <label htmlFor={form.name} >{form.name}</label>
+        <input type="text" {...register(form.name)} />
+        <span>{errors.name && message.errorName}</span>
 
-        <label htmlFor="emai">Email</label>
-        <input type="email" {...register("email")} />
-        <span>{errors.email && "이메일 형식이 맞지 않습니다."}</span>
+        <label htmlFor={form.email} >{form.email}</label>
+        <input type="email" {...register(form.email)} />
+        <span>{errors.email && message.errorEmail}</span>
 
-        <label htmlFor="password">Password</label>
-        <input type="text" {...register("password")} />
-        <span>{errors.password && "비밀번호 형식이 맞지 않습니다."}</span>
+        <label htmlFor={form.password} >{form.password}</label>
+        <input type="password" {...register(form.password)} />
+        <span>{errors.password && message.errorPassword}</span>
 
-        <label htmlFor="checkPassword">Check Password</label>
-        <input type="text" {...register("checkPassword")} />
-        <span>{errors.checkPassword && "비밀번호가 동일하지 않습니다."}</span>
+        <label htmlFor={form.checkPassword} >{form.checkPassword}</label>
+        <input type="password" {...register(form.checkPassword)} />
+        <span>{errors.checkPassword && message.errorCheckPassword}</span>
 
         <input type="submit" />
       </form>

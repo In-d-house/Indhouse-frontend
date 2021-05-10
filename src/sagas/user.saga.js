@@ -6,6 +6,7 @@ import {
 } from "redux-saga/effects";
 
 import * as actions from "../reducers/user";
+import { message } from "../constants";
 import api from "../api";
 
 function* loginLocal({ payload }) {
@@ -18,7 +19,7 @@ function* loginLocal({ payload }) {
     }
 
     if (!result) {
-      yield put(actions.failureLoginLocal("Fail Login"));
+      yield put(actions.failureLoginLocal(message.failLogin));
       return;
     }
 
@@ -30,7 +31,8 @@ function* loginLocal({ payload }) {
 
 function* loginSocial({ payload }) {
   try {
-    const { profile, result, error } = yield api.loginGoogle(payload);
+    const user = yield api.loginSocialByType(payload);
+    const { profile, result, error } = yield api.loginSocial(user);
 
     if (error) {
       yield put(actions.failureLoginSocial(error));
@@ -38,7 +40,7 @@ function* loginSocial({ payload }) {
     }
 
     if (!result) {
-      yield put(actions.failureLoginLocal("Fail Login"));
+      yield put(actions.failureLoginSocial(message.failLogin));
       return;
     }
 
@@ -58,13 +60,33 @@ function* signup({ payload }) {
     }
 
     if (!result) {
-      yield put(actions.failureSignup("Fail Signup"));
+      yield put(actions.failureSignup(message.failSignup));
       return;
     }
 
     yield put(actions.successSignup());
   } catch (error) {
     yield put(actions.failureSignup(error.message));
+  }
+}
+
+function* logout({ payload }) {
+  try {
+    const { result, error } = yield api.logout(payload);
+
+    if (error) {
+      yield put(actions.failureLogout(error));
+      return;
+    }
+
+    if (!result) {
+      yield put(actions.failureLogout(message.failLogout));
+      return;
+    }
+
+    yield put(actions.successLogout());
+  } catch (error) {
+    yield put(actions.failureLogout(error.message));
   }
 }
 
@@ -80,10 +102,15 @@ function* watchRequestSignup() {
   yield takeLatest(actions.requestSignup.type, signup);
 }
 
+function* watchRequestLogout() {
+  yield takeLatest(actions.requestLogout.type, logout);
+}
+
 export default function* userSagas() {
   yield all([
-    call(watchRequestSignup),
     call(watchRequestLoginLocal),
     call(watchRequestLoginSocial),
+    call(watchRequestSignup),
+    call(watchRequestLogout),
   ]);
 }

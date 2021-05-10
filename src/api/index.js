@@ -1,5 +1,7 @@
 import firebase from "./firebase";
 
+import { socialType } from "../constants";
+
 const url = process.env.REACT_APP_LOCAL_URL;
 
 const loginLocal = async data => {
@@ -40,15 +42,21 @@ const loginSocial = async data => {
   }
 };
 
-const loginGoogle = async () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const { user } = await firebase.auth().signInWithPopup(provider);
+const loginSocialByType = async ({ type }) => {
+  let provider = null;
 
-  const userInfo = { name: user.displayName, email: user.email };
+  try {
+    if (type === socialType.google) provider = new firebase.auth.GoogleAuthProvider();
+    if (type === socialType.facebook) provider = new firebase.auth.FacebookAuthProvider();
 
-  const result = await loginSocial(userInfo);
+    const { user } = await firebase.auth().signInWithPopup(provider);
 
-  return result;
+    const userInfo = { name: user.displayName, email: user.email };
+
+    return userInfo;
+  } catch (error) {
+    return error;
+  }
 };
 
 const signup = async data => {
@@ -70,9 +78,29 @@ const signup = async data => {
   }
 };
 
+const logout = async ({ _id, token }) => {
+  try {
+    const response = await fetch(`${url}/auth/logout/${_id}`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+    });
+
+    const res = await response.json();
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
 export default {
   loginLocal,
   loginSocial,
-  loginGoogle,
+  loginSocialByType,
   signup,
+  logout,
 };

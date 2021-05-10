@@ -9,10 +9,12 @@ const FAILURE_LOGIN_SOCIAL = "FAILURE_LOGIN_SOCIAL";
 const REQUEST_SIGNUP = "REQUEST_SIGNUP";
 const SUCCESS_SIGNUP = "SUCCESS_SIGNUP";
 const FAILURE_SIGNUP = "FAILURE_SIGNUP";
-const LOGOUT_USER = "LOGOUT_USER";
+const REQUEST_LOGOUT = "REQUEST_LOGOUT";
+const SUCCESS_LOGOUT = "SUCCESS_LOGOUT";
+const FAILURE_LOGOUT = "FAILURE_LOGOUT";
 
 const initialState = {
-  profile: null,
+  profile: {},
   isLoading: false,
   error: null,
 };
@@ -88,13 +90,28 @@ const reducers = {
     }),
     prepare: error => ({ payload: { error } }),
   },
-  [LOGOUT_USER]: {
+  [REQUEST_LOGOUT]: {
     reducer: state => ({
       ...state,
-      profile: null,
+      isLoading: true,
+      error: null,
+    }),
+  },
+  [SUCCESS_LOGOUT]: {
+    reducer: state => ({
+      ...state,
+      profile: {},
       isLoading: false,
       error: null,
     }),
+  },
+  [FAILURE_LOGOUT]: {
+    reducer: (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload.error,
+    }),
+    prepare: error => ({ payload: { error } }),
   },
 };
 
@@ -113,6 +130,8 @@ export const failureLoginSocial = userSlice.actions[FAILURE_LOGIN_SOCIAL];
 export const requestSignup = userSlice.actions[REQUEST_SIGNUP];
 export const successSignup = userSlice.actions[SUCCESS_SIGNUP];
 export const failureSignup = userSlice.actions[FAILURE_SIGNUP];
-export const logoutUser = userSlice.actions[LOGOUT_USER];
+export const requestLogout = userSlice.actions[REQUEST_LOGOUT];
+export const successLogout = userSlice.actions[SUCCESS_LOGOUT];
+export const failureLogout = userSlice.actions[FAILURE_LOGOUT];
 
 export default userSlice.reducer;

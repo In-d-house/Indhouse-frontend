@@ -5,10 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import * as actions from "../reducers/user";
+import { form, socialType, message } from "../constants";
 
 const schema = yup.object().shape({
-  email: yup.string().required(),
-  password: yup.string().min(4).max(15).required(),
+  [form.email]: yup.string().required(),
+  [form.password]: yup.string().min(4).max(15).required(),
 });
 
 const Login = () => {
@@ -21,27 +22,27 @@ const Login = () => {
     dispatch(actions.requestLoginLocal(data));
   };
 
-  const handleLoginGoogle = () => {
-    dispatch(actions.requestLoginSocial());
+  const handleLoginSocial = type => {
+    dispatch(actions.requestLoginSocial({ type }));
   };
 
   return (
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)} >
-        <label htmlFor="email">Email</label>
-        <input type="email" {...register("email")} />
-        <span>{errors.email && "이메일 형식이 맞지 않습니다."}</span>
+        <label htmlFor={form.email} >{form.email}</label>
+        <input type="email" {...register(form.email)} />
+        <span>{errors.email && message.errorEmail}</span>
 
-        <label htmlFor="password">Password</label>
-        <input type="password" {...register("password")} />
-        <span>{errors.password && "비밀번호 형식이 맞지 않습니다."}</span>
+        <label htmlFor={form.password} >{form.password}</label>
+        <input type="password" {...register(form.password)} />
+        <span>{errors.password && message.errorPassword}</span>
 
         <input type="submit" />
       </form>
 
-      <button onClick={handleLoginGoogle}>Google</button>
-      <button>Facebook</button>
+      <button onClick={() => handleLoginSocial(socialType.google)} >Google</button>
+      <button onClick={() => handleLoginSocial(socialType.facebook)} >Facebook</button>
       <button>Twitter</button>
     </>
   );
