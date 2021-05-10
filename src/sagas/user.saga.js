@@ -5,6 +5,7 @@ import {
   call,
 } from "redux-saga/effects";
 
+import history from "../utils/history";
 import * as actions from "../reducers/user";
 import { message } from "../constants";
 import api from "../api";
@@ -24,6 +25,12 @@ function* loginLocal({ payload }) {
     }
 
     yield put(actions.successLoginLocal({ profile }));
+
+    if (profile.likeGenre.length) {
+      history.push("/");
+    } else {
+      history.push(`/users/choose_genre/${profile._id}`);
+    }
   } catch (error) {
     yield put(actions.failureLoginLocal(error.message));
   }
@@ -45,6 +52,12 @@ function* loginSocial({ payload }) {
     }
 
     yield put(actions.successLoginSocial({ profile }));
+
+    if (profile.likeGenre.length) {
+      history.push("/");
+    } else {
+      history.push(`/users/choose_genre/${profile._id}`);
+    }
   } catch (error) {
     yield put(actions.failureLoginSocial(error.message));
   }
@@ -65,6 +78,8 @@ function* signup({ payload }) {
     }
 
     yield put(actions.successSignup());
+
+    history.push("/login");
   } catch (error) {
     yield put(actions.failureSignup(error.message));
   }
@@ -85,6 +100,8 @@ function* logout({ payload }) {
     }
 
     yield put(actions.successLogout());
+
+    history.push("/");
   } catch (error) {
     yield put(actions.failureLogout(error.message));
   }
