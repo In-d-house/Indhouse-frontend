@@ -1,12 +1,10 @@
 import firebase from "./firebase";
 
-import { socialType } from "../constants";
-
-const url = process.env.REACT_APP_LOCAL_URL;
+import { socialType, env } from "../constants";
 
 const loginLocal = async data => {
   try {
-    const response = await fetch(`${url}/auth/login/local`, {
+    const response = await fetch(`${env.url}/auth/login/local`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -25,7 +23,7 @@ const loginLocal = async data => {
 
 const loginSocial = async data => {
   try {
-    const response = await fetch(`${url}/auth/login/social`, {
+    const response = await fetch(`${env.url}/auth/login/social`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -61,7 +59,7 @@ const loginSocialByType = async ({ type }) => {
 
 const signup = async data => {
   try {
-    const response = await fetch(`${url}/auth/signup`, {
+    const response = await fetch(`${env.url}/auth/signup`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -80,7 +78,7 @@ const signup = async data => {
 
 const logout = async ({ _id, token }) => {
   try {
-    const response = await fetch(`${url}/auth/logout/${_id}`, {
+    const response = await fetch(`${env.url}/auth/logout/${_id}`, {
       method: "POST",
       headers: {
         "Accept": "application/json",

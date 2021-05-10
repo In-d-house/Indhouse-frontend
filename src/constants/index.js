@@ -20,8 +20,13 @@ const message = {
   failLogout: "Fail logout",
 };
 
+const env = {
+  url: process.env.REACT_APP_LOCAL_URL,
+};
+
 export {
   form,
   socialType,
   message,
+  env,
 };

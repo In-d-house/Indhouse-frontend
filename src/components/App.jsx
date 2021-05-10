@@ -1,20 +1,18 @@
 import React from "react";
-import { Switch, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import Signup from "./Signup";
-import Login from "./Login";
-import Logout from "./Logout";
+import Home from "./Home";
+import Landing from "./Landing";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const { profile } = useSelector(state => state.user);
+  const isInitUser = profile.likeGenre?.length;
 
   return (
-    <div>
-      <Login />
-      <Signup />
-      <Logout />
-    </div>
+    <>
+      {!!isInitUser && <Home />}
+      {!isInitUser && <Landing />}
+    </>
   );
 };
 
