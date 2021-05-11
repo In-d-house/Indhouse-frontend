@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import * as actions from "../reducers/user";
 
-const Logout = () => {
+const LogoutForm = () => {
   const dispatch = useDispatch();
   const { profile } = useSelector(state => state.user);
 
@@ -16,4 +16,4 @@ const Logout = () => {
   );
 };
 
-export default Logout;
+export default LogoutForm;
