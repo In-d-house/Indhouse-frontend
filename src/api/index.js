@@ -95,10 +95,48 @@ const logout = async ({ _id, token }) => {
   }
 };
 
-const uploadMusicCoverPhoto = async ({ file, token }) => {
+const editUserProfileName = async ({ name, _id, token }) => {
   try {
-    const response = await fetch(`${env.url}/musics/cover-photo`, {
-      method: "POST",
+    const response = await fetch(`${env.url}/users/profile/name/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({ name }),
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const uploadUserProflePhoto = async ({ file, _id, token }) => {
+  try {
+    const response = await fetch(`${env.url}/users/profile/photo/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "authorization": token,
+      },
+      body: file,
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const uploadMusicCoverPhoto = async ({ file, _id, token }) => {
+  try {
+    const response = await fetch(`${env.url}/musics/cover-photo/${_id}`, {
+      method: "PATCH",
       headers: {
         "authorization": token,
       },
@@ -119,5 +157,7 @@ export default {
   loginSocialByType,
   signup,
   logout,
+  editUserProfileName,
+  uploadUserProflePhoto,
   uploadMusicCoverPhoto,
 };
