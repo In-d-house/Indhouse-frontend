@@ -21,7 +21,7 @@ const SignupForm = () => {
   });
 
   const onSubmit = data => {
-    dispatch(actions.requestSignup(data));
+    dispatch(actions.signupRequest(data));
   };
 
   return (

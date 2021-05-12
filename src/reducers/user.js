@@ -1,117 +1,61 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const REQUEST_LOGIN_LOCAL = "REQUEST_LOGIN_LOCAL";
-const SUCCESS_LOGIN_LOCAL = "SUCCESS_LOGIN_LOCAL";
-const FAILURE_LOGIN_LOCAL = "FAILURE_LOGIN_LOCAL";
-const REQUEST_LOGIN_SOCIAL = "REQUEST_LOGIN_SOCIAL";
-const SUCCESS_LOGIN_SOCIAL = "SUCCESS_LOGIN_SOCIAL";
-const FAILURE_LOGIN_SOCIAL = "FAILURE_LOGIN_SOCIAL";
-const REQUEST_SIGNUP = "REQUEST_SIGNUP";
-const SUCCESS_SIGNUP = "SUCCESS_SIGNUP";
-const FAILURE_SIGNUP = "FAILURE_SIGNUP";
-const REQUEST_LOGOUT = "REQUEST_LOGOUT";
-const SUCCESS_LOGOUT = "SUCCESS_LOGOUT";
-const FAILURE_LOGOUT = "FAILURE_LOGOUT";
-
 const initialState = {
-  profile: {},
+  profile: null,
   isLoading: false,
   error: null,
 };
 
 const reducers = {
-  [REQUEST_LOGIN_LOCAL]: {
-    reducer: state => ({
-      ...state,
-      isLoading: true,
-      error: null,
-    }),
+  localLoginRequest: state => {
+    state.isLoading = true;
   },
-  [SUCCESS_LOGIN_LOCAL]: {
-    reducer: (state, action) => ({
-      ...state,
-      profile: action.payload.profile,
-      isLoading: false,
-      error: null,
-    }),
-    prepare: ({ profile }) => ({ payload: { profile } }),
+  socialLoginRequest: state => {
+    state.isLoading = true;
   },
-  [FAILURE_LOGIN_LOCAL]: {
-    reducer: (state, action) => ({
-      ...state,
-      isLoading: false,
-      error: action.payload.error,
-    }),
-    prepare: error => ({ payload: { error } }),
+  refreshLoginRequest: state => {
+    state.isLoading = true;
   },
-  [REQUEST_LOGIN_SOCIAL]: {
-    reducer: state => ({
-      ...state,
-      isLoading: true,
-      error: null,
-    }),
+  loginSuccess: (state, action) => {
+    state.profile = action.payload;
+    state.isLoading = false;
   },
-  [SUCCESS_LOGIN_SOCIAL]: {
-    reducer: (state, action) => ({
-      ...state,
-      profile: action.payload.profile,
-      isLoading: false,
-      error: null,
-    }),
-    prepare: ({ profile }) => ({ payload: { profile } }),
+  loginFailure: (state, action) => {
+    state.profile = null;
+    state.isLoading = false;
+    state.error = action.payload;
   },
-  [FAILURE_LOGIN_SOCIAL]: {
-    reducer: (state, action) => ({
-      ...state,
-      isLoading: false,
-      error: action.payload.error,
-    }),
-    prepare: error => ({ payload: { error } }),
+  signupRequest: state => {
+    state.isLoading = true;
   },
-  [REQUEST_SIGNUP]: {
-    reducer: state => ({
-      ...state,
-      isLoading: true,
-      error: null,
-    }),
+  signupSuccess: state => {
+    state.isLoading = false;
   },
-  [SUCCESS_SIGNUP]: {
-    reducer: state => ({
-      ...state,
-      isLoading: false,
-      error: null,
-    }),
+  signupFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
   },
-  [FAILURE_SIGNUP]: {
-    reducer: (state, action) => ({
-      ...state,
-      isLoading: false,
-      error: action.payload.error,
-    }),
-    prepare: error => ({ payload: { error } }),
+  logoutRequest: state => {
+    state.isLoading = true;
   },
-  [REQUEST_LOGOUT]: {
-    reducer: state => ({
-      ...state,
-      isLoading: true,
-      error: null,
-    }),
+  logoutSuccess: state => {
+    state.profile = null;
+    state.isLoading = false;
   },
-  [SUCCESS_LOGOUT]: {
-    reducer: state => ({
-      ...state,
-      profile: {},
-      isLoading: false,
-      error: null,
-    }),
+  logoutFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
   },
-  [FAILURE_LOGOUT]: {
-    reducer: (state, action) => ({
-      ...state,
-      isLoading: false,
-      error: action.payload.error,
-    }),
-    prepare: error => ({ payload: { error } }),
+  editProfileRequest: state => {
+    state.isLoading = true;
+  },
+  editProfileSuccess: (state, action) => {
+    state.profile[action.payload.type] = action.payload.data;
+    state.isLoading = false;
+  },
+  editProfileFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
   },
 };
 
@@ -121,17 +65,21 @@ const userSlice = createSlice({
   reducers,
 });
 
-export const requestLoginLocal = userSlice.actions[REQUEST_LOGIN_LOCAL];
-export const successLoginLocal = userSlice.actions[SUCCESS_LOGIN_LOCAL];
-export const failureLoginLocal = userSlice.actions[FAILURE_LOGIN_LOCAL];
-export const requestLoginSocial = userSlice.actions[REQUEST_LOGIN_SOCIAL];
-export const successLoginSocial = userSlice.actions[SUCCESS_LOGIN_SOCIAL];
-export const failureLoginSocial = userSlice.actions[FAILURE_LOGIN_SOCIAL];
-export const requestSignup = userSlice.actions[REQUEST_SIGNUP];
-export const successSignup = userSlice.actions[SUCCESS_SIGNUP];
-export const failureSignup = userSlice.actions[FAILURE_SIGNUP];
-export const requestLogout = userSlice.actions[REQUEST_LOGOUT];
-export const successLogout = userSlice.actions[SUCCESS_LOGOUT];
-export const failureLogout = userSlice.actions[FAILURE_LOGOUT];
+export const {
+  localLoginRequest,
+  socialLoginRequest,
+  refreshLoginRequest,
+  loginSuccess,
+  loginFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
+  signupRequest,
+  signupSuccess,
+  signupFailure,
+  editProfileRequest,
+  editProfileSuccess,
+  editProfileFailure,
+} = userSlice.actions;
 
 export default userSlice.reducer;

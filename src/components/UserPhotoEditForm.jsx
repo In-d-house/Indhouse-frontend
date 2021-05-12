@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 
-import api from "../api";
+import * as actions from "../reducers/user";
+import { profileType } from "../constants";
 
-const UserPhotoEditForm = ({ _id, photoUrl, token }) => {
+const UserPhotoEditForm = ({ _id, photoUrl }) => {
+  const dispatch = useDispatch();
   const [photo, setPhoto] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const photoInputRef = useRef(null);
@@ -20,7 +23,7 @@ const UserPhotoEditForm = ({ _id, photoUrl, token }) => {
       const file = new FormData();
       file.append("photo", photo);
 
-      api.uploadUserProflePhoto({ file, _id, token });
+      dispatch(actions.editProfileRequest({ type: profileType.photo, file, _id }));
     }
 
     resetProfilePhoto();

@@ -40,7 +40,7 @@ const loginSocial = async user => {
   }
 };
 
-const loginSocialByType = async ({ type }) => {
+const loginSocialByType = async type => {
   let provider = null;
 
   try {
@@ -95,7 +95,9 @@ const logout = async ({ _id, token }) => {
   }
 };
 
-const editUserProfileName = async ({ name, _id, token }) => {
+const editUserProfileName = async ({ name, _id }) => {
+  const { token } = JSON.parse(localStorage.user);
+
   try {
     const response = await fetch(`${env.url}/users/profile/name/${_id}`, {
       method: "PATCH",
@@ -115,7 +117,9 @@ const editUserProfileName = async ({ name, _id, token }) => {
   }
 };
 
-const uploadUserProflePhoto = async ({ file, _id, token }) => {
+const uploadUserProflePhoto = async ({ file, _id }) => {
+  const { token } = JSON.parse(localStorage.user);
+
   try {
     const response = await fetch(`${env.url}/users/profile/photo/${_id}`, {
       method: "PATCH",
@@ -133,7 +137,9 @@ const uploadUserProflePhoto = async ({ file, _id, token }) => {
   }
 };
 
-const uploadMusicCoverPhoto = async ({ file, _id, token }) => {
+const uploadMusicCoverPhoto = async ({ file, _id }) => {
+  const { token } = JSON.parse(localStorage.user);
+
   try {
     const response = await fetch(`${env.url}/musics/cover-photo/${_id}`, {
       method: "PATCH",
