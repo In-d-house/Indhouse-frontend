@@ -1,15 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import UserNameEditForm from "./UserNameEditForm";
+import UserPhotoEditForm from "./UserPhotoEditForm";
+
 const Profile = () => {
-  const { profile } = useSelector(state => state.user);
+  const { _id, name: currentName, photoUrl } = useSelector(state => state.user.profile);
+  const { token } = useSelector(state => state.user.profile);
 
   return (
     <>
-      <img src={profile.photoUrl} ></img>
-      <button>Edit Image</button>
-      <button>Edit Name</button>
-      <button>Done</button>
+      <UserPhotoEditForm
+        _id={_id}
+        photoUrl={photoUrl}
+        token={token}
+      />
+      <UserNameEditForm
+        _id={_id}
+        currentName={currentName}
+        token={token}
+      />
     </>
   );
 };
