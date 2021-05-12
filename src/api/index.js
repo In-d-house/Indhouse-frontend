@@ -117,8 +117,8 @@ const editUserProfileName = async ({ name, _id }) => {
   }
 };
 
-const uploadUserProflePhoto = async ({ file, _id }) => {
-  const { token } = JSON.parse(localStorage.user);
+const uploadUserProflePhoto = async ({ file }) => {
+  const { _id, token } = JSON.parse(localStorage.user);
 
   try {
     const response = await fetch(`${env.url}/users/profile/photo/${_id}`, {
@@ -137,16 +137,35 @@ const uploadUserProflePhoto = async ({ file, _id }) => {
   }
 };
 
-const uploadMusicCoverPhoto = async ({ file, _id }) => {
+const uploadMusicCoverPhoto = async ({ file }) => {
   const { token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/musics/cover-photo/${_id}`, {
+    const response = await fetch(`${env.url}/musics/cover-photo`, {
       method: "PATCH",
       headers: {
         "authorization": token,
       },
       body: file,
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const createMusic = async music => {
+  try {
+    const response = await fetch(`${env.url}/musics`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ music }),
     });
 
     const data = await response.json();
@@ -166,4 +185,5 @@ export default {
   editUserProfileName,
   uploadUserProflePhoto,
   uploadMusicCoverPhoto,
+  createMusic,
 };
