@@ -1,14 +1,14 @@
 import React from "react";
 
 import Profile from "./Profile";
-import LogoutForm from "./LogoutForm";
+import LogoutButton from "./LogoutButton";
 
 const Setting = () => {
   return (
     <>
       <h1>Setting</h1>
       <Profile />
-      <LogoutForm />
+      <LogoutButton />
     </>
   );
 };

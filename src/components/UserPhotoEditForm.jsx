@@ -1,20 +1,29 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useRef } from "react";
 
 import api from "../api";
 
-const MusicCoverForm = () => {
-  const { token } = useSelector(state => state.user.profile);
+const UserPhotoEditForm = ({ _id, photoUrl, token }) => {
   const [photo, setPhoto] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const photoInputRef = useRef(null);
+
+  const resetProfilePhoto = () => {
+    setPhoto(null);
+    setPreviewUrl(null);
+    photoInputRef.current.value = null;
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const file = new FormData();
-    file.append("photo", photo);
+    if (photo) {
+      const file = new FormData();
+      file.append("photo", photo);
 
-    api.uploadMusicCoverPhoto({ file, token });
+      api.uploadUserProflePhoto({ file, _id, token });
+    }
+
+    resetProfilePhoto();
   };
 
   const handleFileOnChange = e => {
@@ -37,29 +46,29 @@ const MusicCoverForm = () => {
     }
 
     setPhoto(null);
-    setPreviewUrl(null);
+    setPreviewUrl(photoUrl);
   };
 
   return (
     <>
+      <img src={photoUrl} />
+      <img src={previewUrl} />
       <form
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="file">Edit Music Cover</label>
         <input
           type="file"
           name="file"
           id="file"
           accept="image/*"
+          ref={photoInputRef}
           onChange={handleFileOnChange}
-          required
         />
-        <button type="submit" />
+        <button type="submit" >Edit Photo</button>
       </form>
-      <img src={previewUrl} />
     </>
   );
 };
 
-export default MusicCoverForm;
+export default UserPhotoEditForm;
