@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import * as actions from "../reducers/user";
 
-const LogoutForm = () => {
+const LogoutButton = () => {
   const dispatch = useDispatch();
   const { profile } = useSelector(state => state.user);
 
   const handleLogout = () => {
-    dispatch(actions.requestLogout(profile));
+    dispatch(actions.logoutRequest(profile));
   };
 
   return (
@@ -16,4 +16,4 @@ const LogoutForm = () => {
   );
 };
 
-export default LogoutForm;
+export default LogoutButton;

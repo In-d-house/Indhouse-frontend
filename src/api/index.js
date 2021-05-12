@@ -40,7 +40,7 @@ const loginSocial = async user => {
   }
 };
 
-const loginSocialByType = async ({ type }) => {
+const loginSocialByType = async type => {
   let provider = null;
 
   try {
@@ -95,14 +95,77 @@ const logout = async ({ _id, token }) => {
   }
 };
 
-const uploadMusicCoverPhoto = async ({ file, token }) => {
+const editUserProfileName = async ({ name, _id }) => {
+  const { token } = JSON.parse(localStorage.user);
+
   try {
-    const response = await fetch(`${env.url}/musics/cover-photo`, {
-      method: "POST",
+    const response = await fetch(`${env.url}/users/profile/name/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({ name }),
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const uploadUserProflePhoto = async ({ file }) => {
+  const { _id, token } = JSON.parse(localStorage.user);
+
+  try {
+    const response = await fetch(`${env.url}/users/profile/photo/${_id}`, {
+      method: "PATCH",
       headers: {
         "authorization": token,
       },
       body: file,
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const uploadMusicCoverPhoto = async ({ file }) => {
+  const { token } = JSON.parse(localStorage.user);
+
+  try {
+    const response = await fetch(`${env.url}/musics/cover-photo`, {
+      method: "PATCH",
+      headers: {
+        "authorization": token,
+      },
+      body: file,
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const createMusic = async music => {
+  try {
+    const response = await fetch(`${env.url}/musics`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ music }),
     });
 
     const data = await response.json();
@@ -119,5 +182,8 @@ export default {
   loginSocialByType,
   signup,
   logout,
+  editUserProfileName,
+  uploadUserProflePhoto,
   uploadMusicCoverPhoto,
+  createMusic,
 };
