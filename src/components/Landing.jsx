@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Login from "./Login";
-import Signup from "./Signup";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 import LandingNav from "./LandingNav";
 import LandingMain from "./LandingMain";
 import GenreChoose from "./GenreChoose";
@@ -25,11 +25,11 @@ const Landing = () => {
         />
         <Route
           path="/login"
-          component={Login}
+          component={LoginForm}
         />
         <Route
           path="/signup"
-          component={Signup}
+          component={SignupForm}
         />
       </Switch>
     </>

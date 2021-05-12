@@ -1,8 +1,8 @@
-import firebase from "./firebase";
+import firebase from "../configs/firebase";
 
 import { socialType, env } from "../constants";
 
-const loginLocal = async data => {
+const loginLocal = async user => {
   try {
     const response = await fetch(`${env.url}/auth/login/local`, {
       method: "POST",
@@ -10,18 +10,18 @@ const loginLocal = async data => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(user),
     });
 
-    const res = await response.json();
+    const data = await response.json();
 
-    return res;
+    return data;
   } catch (error) {
     return error;
   }
 };
 
-const loginSocial = async data => {
+const loginSocial = async user => {
   try {
     const response = await fetch(`${env.url}/auth/login/social`, {
       method: "POST",
@@ -29,12 +29,12 @@ const loginSocial = async data => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(user),
     });
 
-    const res = await response.json();
+    const data = await response.json();
 
-    return res;
+    return data;
   } catch (error) {
     return error;
   }
@@ -57,7 +57,7 @@ const loginSocialByType = async ({ type }) => {
   }
 };
 
-const signup = async data => {
+const signup = async user => {
   try {
     const response = await fetch(`${env.url}/auth/signup`, {
       method: "POST",
@@ -65,12 +65,12 @@ const signup = async data => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(user),
     });
 
-    const res = await response.json();
+    const data = await response.json();
 
-    return res;
+    return data;
   } catch (error) {
     return error;
   }
@@ -87,9 +87,27 @@ const logout = async ({ _id, token }) => {
       },
     });
 
-    const res = await response.json();
+    const data = await response.json();
 
-    return res;
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const uploadMusicCoverPhoto = async ({ file, token }) => {
+  try {
+    const response = await fetch(`${env.url}/musics/cover-photo`, {
+      method: "POST",
+      headers: {
+        "authorization": token,
+      },
+      body: file,
+    });
+
+    const data = await response.json();
+
+    return data;
   } catch (error) {
     return error;
   }
@@ -101,4 +119,5 @@ export default {
   loginSocialByType,
   signup,
   logout,
+  uploadMusicCoverPhoto,
 };
