@@ -8,7 +8,7 @@ const LogoutButton = () => {
   const { profile } = useSelector(state => state.user);
 
   const handleLogout = () => {
-    dispatch(actions.requestLogout(profile));
+    dispatch(actions.logoutRequest(profile));
   };
 
   return (

@@ -19,11 +19,11 @@ const LoginForm = () => {
   });
 
   const onSubmit = data => {
-    dispatch(actions.requestLoginLocal(data));
+    dispatch(actions.localLoginRequest(data));
   };
 
   const handleLoginSocial = type => {
-    dispatch(actions.requestLoginSocial({ type }));
+    dispatch(actions.socialLoginRequest(type));
   };
 
   return (
