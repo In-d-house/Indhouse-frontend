@@ -24,6 +24,7 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
       file.append("photo", photo);
 
       dispatch(actions.editProfileRequest({ type: profileType.photo, file, _id }));
+
     }
 
     resetProfilePhoto();

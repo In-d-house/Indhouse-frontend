@@ -21,7 +21,7 @@ const MusicCoverForm = ({ setPhoto }) => {
 
       return;
     }
-
+    
     setPhoto(null);
     setPreviewUrl(null);
   };

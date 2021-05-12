@@ -6,6 +6,7 @@ import { profileType } from "../constants";
 
 const UserNameEditForm = ({ _id, currentName }) => {
   const dispatch = useDispatch();
+
   const [name, setName] = useState("");
 
   const handleSubmit = e => {
@@ -14,6 +15,7 @@ const UserNameEditForm = ({ _id, currentName }) => {
     if (currentName === name) return;
 
     dispatch(actions.editProfileRequest({ type: profileType.name, name, _id }));
+
   };
 
   return (
