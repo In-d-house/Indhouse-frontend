@@ -10,14 +10,19 @@ const socialType = {
   facebook: "facebook",
 };
 
+const profileType = {
+  name: "name",
+  photo: "photoUrl",
+};
+
 const message = {
   errorName: "이름 형식이 맞지 않습니다.",
   errorEmail: "이메일 형식이 맞지 않습니다.",
   errorPassword: "비밀번호 형식이 맞지 않습니다.",
   errorCheckPassword: "비밀번호가 동일하지 않습니다.",
-  failLogin: "Fail login",
-  failSignup: "Fail signup",
-  failLogout: "Fail logout",
+  failLogin: "로그인 실패",
+  failSignup: "회원가입 실패",
+  failLogout: "로그아웃 실패",
 };
 
 const env = {
@@ -27,6 +32,7 @@ const env = {
 export {
   form,
   socialType,
+  profileType,
   message,
   env,
 };
