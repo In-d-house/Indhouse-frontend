@@ -4,34 +4,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import * as actions from "../reducers/user";
-import { form, message } from "../constants";
+import * as actions from "../../reducers/user";
+import { form, socialType, message } from "../../constants";
 
 const schema = yup.object().shape({
-  [form.name]: yup.string().required(),
-  [form.email]: yup.string().email().required(),
+  [form.email]: yup.string().required(),
   [form.password]: yup.string().min(4).max(15).required(),
-  [form.checkPassword]: yup.string().oneOf([yup.ref(form.password), null]).required(),
 });
 
-const SignupForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const { register, formState: { errors }, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = data => {
-    dispatch(actions.signupRequest(data));
+    dispatch(actions.localLoginRequest(data));
+  };
+
+  const handleLoginSocial = type => {
+    dispatch(actions.socialLoginRequest(type));
   };
 
   return (
-    <div>
-      <h1>Sign up to your account.</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor={form.name} >{form.name}</label>
-        <input type="text" {...register(form.name)} />
-        <span>{errors.name && message.errorName}</span>
-
+    <>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit(onSubmit)} >
         <label htmlFor={form.email} >{form.email}</label>
         <input type="email" {...register(form.email)} />
         <span>{errors.email && message.errorEmail}</span>
@@ -40,14 +38,14 @@ const SignupForm = () => {
         <input type="password" {...register(form.password)} />
         <span>{errors.password && message.errorPassword}</span>
 
-        <label htmlFor={form.checkPassword} >{form.checkPassword}</label>
-        <input type="password" {...register(form.checkPassword)} />
-        <span>{errors.checkPassword && message.errorCheckPassword}</span>
-
         <input type="submit" />
       </form>
-    </div>
+
+      <button onClick={() => handleLoginSocial(socialType.google)} >Google</button>
+      <button onClick={() => handleLoginSocial(socialType.facebook)} >Facebook</button>
+      <button>Twitter</button>
+    </>
   );
 };
 
-export default SignupForm;
+export default LoginForm;

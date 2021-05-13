@@ -15,6 +15,11 @@ const profileType = {
   photo: "photoUrl",
 };
 
+const photoLikeType = {
+  like: "like",
+  disLike: "dislike",
+};
+
 const message = {
   errorName: "이름 형식이 맞지 않습니다.",
   errorEmail: "이메일 형식이 맞지 않습니다.",
@@ -29,10 +34,22 @@ const env = {
   url: process.env.REACT_APP_LOCAL_URL,
 };
 
+const title = {
+  home: "Hi, ",
+  tasteMusic: "Your music taste!",
+  tasteFind: "How about this music?",
+  search: "SEARCH",
+  setting: "SETTING",
+  favoriteMusic: "FAVORITE MUSIC",
+  favoriteArtist: "FAVORITE ARTIST",
+};
+
 export {
   form,
   socialType,
   profileType,
+  photoLikeType,
   message,
   env,
+  title,
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Profile from "./Profile";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./buttons/LogoutButton";
 
 const Setting = () => {
   return (

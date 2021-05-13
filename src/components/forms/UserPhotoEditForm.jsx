@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import * as actions from "../reducers/user";
-import { profileType } from "../constants";
+import * as actions from "../../reducers/user";
+import { profileType } from "../../constants";
 
 const UserPhotoEditForm = ({ _id, photoUrl }) => {
   const dispatch = useDispatch();

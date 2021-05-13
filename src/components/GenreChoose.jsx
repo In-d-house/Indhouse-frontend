@@ -43,7 +43,7 @@ const GenreChoose = () => {
     const choose = [];
 
     for (let i = 0; i < Object.keys(refs).length; i++) {
-      if (refs[i].current.checked) choose.push({ genre: refs[i].current.name });
+      if (refs[i].current.checked) choose.push({ genreId: refs[i].current.name });
     }
 
     dispatch(actions.chooseGenreRequest(choose));
