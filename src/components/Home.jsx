@@ -5,6 +5,7 @@ import Search from "./Search";
 import Setting from "./Setting";
 import HomeNav from "./HomeNav";
 import HomeMain from "./HomeMain";
+import UserPhoto from "./UserPhoto";
 import TasteFind from "./TasteFind";
 import TasteMusic from "./TasteMusic";
 import FavoriteMusic from "./FavoriteMusic";
@@ -13,8 +14,8 @@ import FavoriteArtist from "./FavoriteArtist";
 const Home = () => {
   return (
     <>
-      <h1>Home Page</h1>
       <HomeNav />
+      <UserPhoto />
 
       <Switch>
         <Route

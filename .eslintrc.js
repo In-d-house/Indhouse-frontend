@@ -23,6 +23,7 @@ module.exports = {
     "no-console": ["warn"],
     "no-underscore-dangle": ["off"],
     "no-param-reassign": ["off"],
+    "no-plusplus": ["off"],
     "import/prefer-default-export": ["off"],
     "react-hooks/exhaustive-deps": ["warn"],
     "react/jsx-filename-extension": [1, { "extensions": ["js", "jsx"] }],

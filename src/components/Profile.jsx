@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import UserNameEditForm from "./UserNameEditForm";
-import UserPhotoEditForm from "./UserPhotoEditForm";
+import UserNameEditForm from "./forms/UserNameEditForm";
+import UserPhotoEditForm from "./forms/UserPhotoEditForm";
 
 const Profile = () => {
   const { _id, name: currentName, photoUrl } = useSelector(state => state.user.profile);

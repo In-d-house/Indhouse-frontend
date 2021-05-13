@@ -57,6 +57,17 @@ const reducers = {
     state.isLoading = false;
     state.error = action.payload;
   },
+  chooseGenreRequest: state => {
+    state.isLoading = true;
+  },
+  chooseGenreSuccess: (state, action) => {
+    state.isLoading = false;
+    state.profile.likeGenre = action.payload;
+  },
+  chooseGenreFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
 };
 
 const userSlice = createSlice({
@@ -80,6 +91,9 @@ export const {
   editProfileRequest,
   editProfileSuccess,
   editProfileFailure,
+  chooseGenreRequest,
+  chooseGenreSuccess,
+  chooseGenreFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;
