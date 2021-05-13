@@ -15,7 +15,6 @@ const UserNameEditForm = ({ _id, currentName }) => {
     if (currentName === name) return;
 
     dispatch(actions.editProfileRequest({ type: profileType.name, name, _id }));
-
   };
 
   return (

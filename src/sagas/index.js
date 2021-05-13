@@ -1,9 +1,11 @@
 import { all, call } from "redux-saga/effects";
 
-import userSagas from "./user.saga";
+import userAuthSagas from "./userAuth.saga";
+import userProfileSagas from "./userProfile.saga";
 
 export default function* saga() {
   yield all([
-    call(userSagas),
+    call(userAuthSagas),
+    call(userProfileSagas),
   ]);
 }

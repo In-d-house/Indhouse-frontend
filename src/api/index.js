@@ -40,6 +40,27 @@ const loginSocial = async user => {
   }
 };
 
+const loginRefresh = async user => {
+  const { _id, token } = user;
+  try {
+    const response = await fetch(`${env.url}/auth/login/refresh/${_id}`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify(user),
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 const loginSocialByType = async type => {
   let provider = null;
 
@@ -176,9 +197,44 @@ const createMusic = async music => {
   }
 };
 
+const getGenre = async () => {
+  try {
+    const response = await fetch(`${env.url}/genres`);
+
+    const { genres } = await response.json();
+
+    return genres;
+  } catch (error) {
+    return error;
+  }
+};
+
+const editUserLikeGenre = async genres => {
+  const { _id, token } = JSON.parse(localStorage.user);
+
+  try {
+    const response = await fetch(`${env.url}/users/profile/likeGenre/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({ genres }),
+    });
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export default {
   loginLocal,
   loginSocial,
+  loginRefresh,
   loginSocialByType,
   signup,
   logout,
@@ -186,4 +242,6 @@ export default {
   uploadUserProflePhoto,
   uploadMusicCoverPhoto,
   createMusic,
+  getGenre,
+  editUserLikeGenre,
 };
