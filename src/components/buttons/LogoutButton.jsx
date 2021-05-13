@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import * as actions from "../reducers/user";
+import * as actions from "../../reducers/user";
 
 const LogoutButton = () => {
   const dispatch = useDispatch();

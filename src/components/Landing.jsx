@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginForm from "./forms/LoginForm";
+import SignupForm from "./forms/SignupForm";
 import LandingNav from "./LandingNav";
 import LandingMain from "./LandingMain";
 import GenreChoose from "./GenreChoose";
