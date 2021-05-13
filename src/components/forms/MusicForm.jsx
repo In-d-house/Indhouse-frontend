@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import MusicCoverForm from "./MusicCoverForm";
 
-import api from "../api";
+import api from "../../api";
 
 const MusicForm = () => {
   const [title, setTitle] = useState("");
