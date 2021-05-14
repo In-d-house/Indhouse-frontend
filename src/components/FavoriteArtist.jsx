@@ -1,9 +1,13 @@
 import React from "react";
 
+import Title from "./shared/Title";
+
+import { title } from "../constants";
+
 const FavoriteArtist = () => {
   return (
     <>
-      <h1>Favorite Artist</h1>
+      <Title title={title.favoriteArtist} />
     </>
   );
 };
