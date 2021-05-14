@@ -24,7 +24,7 @@ module.exports = {
     "no-underscore-dangle": ["off"],
     "no-param-reassign": ["off"],
     "no-plusplus": ["off"],
-    "import/prefer-default-export": ["off"],
+    "import/first": ["off"],
     "react-hooks/exhaustive-deps": ["warn"],
     "react/jsx-filename-extension": [1, { "extensions": ["js", "jsx"] }],
     "react/jsx-props-no-spreading": ["off"],
