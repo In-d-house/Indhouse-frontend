@@ -1,8 +1,35 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
 import * as actions from "../../reducers/user";
 import { profileType } from "../../constants";
+
+const Wrapper = styled.div`
+  .img-container {
+    display: flex;
+    justify-content: space-between;
+    width: 25rem;
+    margin-top: 5rem;
+  }
+
+  .img-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 15rem;
+
+    span {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  img {
+    width: 10rem;
+    border-radius: 50%;
+  }
+`;
 
 const UserPhotoEditForm = ({ _id, photoUrl }) => {
   const dispatch = useDispatch();
@@ -53,9 +80,17 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
   };
 
   return (
-    <>
-      <img src={photoUrl} />
-      <img src={previewUrl} />
+    <Wrapper>
+      <div className="img-container" >
+        <div className="img-box" >
+          <img src={photoUrl} />
+          <span>현재 이미지</span>
+        </div>
+        <div className="img-box" >
+          <img src={previewUrl} />
+          <span>변경할 이미지</span>
+        </div>
+      </div>
       <form
         encType="multipart/form-data"
         onSubmit={handleSubmit}
@@ -70,7 +105,7 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
         />
         <button type="submit" >Edit Photo</button>
       </form>
-    </>
+    </Wrapper>
   );
 };
 

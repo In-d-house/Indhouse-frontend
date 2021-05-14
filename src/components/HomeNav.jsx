@@ -1,12 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Nav = styled.div`
+  background-color: ${({ theme }) => theme.colors.indigo};
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  min-height: 100vh;
+`;
 
 const HomeNav = () => {
   const { _id } = useSelector(state => state.user.profile);
 
   return (
-    <>
+    <Nav>
       <Link to="/" >In-d house</Link>
       <div>
         <Link to="/" >HOME</Link>
@@ -20,7 +30,7 @@ const HomeNav = () => {
         <Link to={`/users/favorite_artist/${_id}`} >FAVORITE ARTIST</Link>
       </div>
       <Link to={`/users/find_taste/${_id}` }>+ FIND TASTE</Link>
-    </>
+    </Nav>
   );
 };
 

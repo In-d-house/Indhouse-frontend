@@ -1,9 +1,13 @@
 import React from "react";
 
+import Title from "./shared/Title";
+
+import { title } from "../constants";
+
 const TasteMusic = () => {
   return (
     <>
-      <h1>Taste</h1>
+      <Title title={title.tasteMusic} />
     </>
   );
 };
