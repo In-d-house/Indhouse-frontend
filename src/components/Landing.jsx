@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
 import LoginForm from "./forms/LoginForm";
 import SignupForm from "./forms/SignupForm";
@@ -7,10 +8,17 @@ import LandingNav from "./LandingNav";
 import LandingMain from "./LandingMain";
 import GenreChoose from "./GenreChoose";
 
+const Page = styled.div`
+  background-color: ${({ theme }) => theme.colors.blue};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
 const Landing = () => {
   return (
-    <>
-      <h1>Landing Page</h1>
+    <Page>
       <LandingNav />
 
       <Switch>
@@ -32,7 +40,7 @@ const Landing = () => {
           component={SignupForm}
         />
       </Switch>
-    </>
+    </Page>
   );
 };
 

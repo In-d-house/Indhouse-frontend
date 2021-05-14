@@ -1,9 +1,13 @@
 import React from "react";
 
+import Title from "./shared/Title";
+
+import { title } from "../constants";
+
 const TasteFind = () => {
   return (
     <>
-      <h1>Find Taste</h1>
+      <Title title={title.tasteFind} />
     </>
   );
 };
