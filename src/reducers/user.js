@@ -68,6 +68,28 @@ const reducers = {
     state.isLoading = false;
     state.error = action.payload;
   },
+  musicLikeRequest: state => {
+    state.isLoading = true;
+  },
+  musicLikeSuccess: (state, action) => {
+    state.isLoading = false;
+    state.profile.likeMusic.push(action.payload);
+  },
+  musicLikeFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
+  musicDislikeRequest: state => {
+    state.isLoading = true;
+  },
+  musicDislikeSuccess: (state, action) => {
+    state.isLoading = false;
+    state.profile.likeMusic.filter(music => music.musicId !== action.payload.musicId);
+  },
+  musicDislikeFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
 };
 
 const userSlice = createSlice({
@@ -94,6 +116,12 @@ export const {
   chooseGenreRequest,
   chooseGenreSuccess,
   chooseGenreFailure,
+  musicLikeRequest,
+  musicLikeSuccess,
+  musicLikeFailure,
+  musicDislikeRequest,
+  musicDislikeSuccess,
+  musicDislikeFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

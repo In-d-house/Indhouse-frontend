@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -11,6 +12,7 @@ import TasteFind from "./TasteFind";
 import TasteMusic from "./TasteMusic";
 import FavoriteMusic from "./FavoriteMusic";
 import FavoriteArtist from "./FavoriteArtist";
+import MusicCreateForm from "./forms/MusicCreateForm";
 
 const Page = styled.div`
   position: relative;
@@ -29,17 +31,25 @@ const Page = styled.div`
 `;
 
 const Home = () => {
+  const {
+    _id,
+    name,
+    photoUrl,
+    likeMusic,
+    likeGenre,
+  } = useSelector(state => state.user.profile);
+
   return (
     <Page>
-      <HomeNav />
-      <UserPhoto />
+      <HomeNav userId={_id} />
+      <UserPhoto photo={photoUrl} />
 
       <div className="contents">
         <Switch>
           <Route
             exact
             path="/"
-            component={HomeMain}
+            render={() => <HomeMain name={name} likeGenre={likeGenre} likeMusic={likeMusic} />}
           />
           <Route
             path="/search/:user_id"
@@ -55,7 +65,7 @@ const Home = () => {
           />
           <Route
             path="/users/favorite_music/:user_id"
-            component={FavoriteMusic}
+            render={() => <FavoriteMusic likeMusic={likeMusic} />}
           />
           <Route
             path="/users/favorite_artist/:user_id"
@@ -64,6 +74,10 @@ const Home = () => {
           <Route
             path="/users/find_taste/:user_id"
             component={TasteFind}
+          />
+          <Route
+            path="/create_music"
+            component={MusicCreateForm}
           />
         </Switch>
       </div>

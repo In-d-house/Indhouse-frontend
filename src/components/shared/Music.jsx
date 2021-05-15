@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-
-import api from "../api";
 
 const Wrapper = styled.div`
   position: relative;
@@ -29,24 +27,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const Music = ({ info }) => {
-  const [isLike, setIsLike] = useState(info.isLike);
+const checkTitleLength = string => {
+  return string.length > 8 ? "small-title" : "";
+};
 
-  const handleClick = () => {
-    setIsLike(prev => !prev);
-    api.updateLikeUser({ isLike, musicId: info._id });
-  };
-
-  const checkTitleLength = () => {
-    return info.title.length > 8;
-  };
-
+const Music = ({ info, onClick, order }) => {
   return (
     <Wrapper>
       <img src={info.coverPhotoUrl} />
       <div>
-        <span className={checkTitleLength() && "small-title"}>{info.title}</span>
-        <button onClick={handleClick} >Like</button>
+        <span className={checkTitleLength(info.title)}>{info.title}</span>
+        <button onClick={() => onClick(order)} >Like</button>
       </div>
     </Wrapper>
   );

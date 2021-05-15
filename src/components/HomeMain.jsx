@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Title from "./shared/Title";
@@ -10,13 +9,11 @@ import { title } from "../constants";
 const Wrapper = styled.div`
 `;
 
-const HomeMain = () => {
-  const { name } = useSelector(state => state.user.profile);
-
+const HomeMain = ({ name, likeGenre, likeMusic }) => {
   return (
     <Wrapper>
       <Title title={`${title.home}${name}`} />
-      <HomeMusicRecommend />
+      <HomeMusicRecommend likeGenre={likeGenre} likeMusic={likeMusic} />
     </Wrapper>
   );
 };

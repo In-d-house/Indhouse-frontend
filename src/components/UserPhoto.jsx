@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -14,12 +13,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const UserPhoto = () => {
-  const { photoUrl } = useSelector(state => state.user.profile);
-
+const UserPhoto = ({ photo }) => {
   return (
     <Wrapper>
-      <img src={photoUrl}></img>
+      <img src={photo}></img>
     </Wrapper>
   );
 };

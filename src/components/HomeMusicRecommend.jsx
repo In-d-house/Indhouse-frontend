@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import Music from "./Music";
+import Music from "./shared/Music";
+
+import filterSameMusic from "../utils/filterSameMusic";
+import * as actions from "../reducers/user";
 import api from "../api";
 
 const Wrapper = styled.div`
@@ -22,20 +25,22 @@ const Wrapper = styled.div`
 
 const VIEW_LENGTH = 3;
 
-const HomeMusicRecommend = () => {
-  const { likeGenre } = useSelector(state => state.user.profile);
+const HomeMusicRecommend = ({ likeGenre, likeMusic }) => {
+  const dispatch = useDispatch();
   const [recommendMusics, setRecommendMusics] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const init = async () => {
-      const { musics } = await api.getRecommendMusicByGenre(likeGenre);
+      const { musics } = await api.getMusicByLikeGenre(likeGenre);
 
-      setRecommendMusics(musics);
+      const filterdMusics = filterSameMusic(likeMusic, musics);
+
+      setRecommendMusics(filterdMusics);
     };
 
     init();
-  }, []);
+  }, [likeGenre, likeMusic]);
 
   const prevSlide = () => {
     const index = currentIndex === 0 ? recommendMusics.length - 1 : currentIndex - 1;
@@ -55,14 +60,22 @@ const HomeMusicRecommend = () => {
     ? [...activeMusics, ...recommendMusics.slice(0, VIEW_LENGTH - activeMusics.length)]
     : activeMusics;
 
+  const handleClick = async idx => {
+    const music = recommendMusics[currentIndex + idx];
+
+    dispatch(actions.musicLikeRequest({ isLike: music.like, musicId: music._id }));
+  };
+
   return (
     <Wrapper>
       <button className="switch" onClick={prevSlide} >{`<`}</button>
       <div className="music-container" >
-        {musicToDisplay.map(music => (
+        {musicToDisplay.map((music, idx) => (
           <Music
             key={music._id}
             info={music}
+            onClick={handleClick}
+            order={idx}
           />
         ))}
       </div>
