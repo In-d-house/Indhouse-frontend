@@ -4,7 +4,7 @@ import MusicCoverForm from "./MusicCoverForm";
 
 import api from "../../api";
 
-const MusicForm = () => {
+const MusicCreateForm = () => {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [genre, setGenre] = useState("");
@@ -62,4 +62,4 @@ const MusicForm = () => {
   );
 };
 
-export default MusicForm;
+export default MusicCreateForm;

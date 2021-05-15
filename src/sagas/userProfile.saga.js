@@ -57,6 +57,26 @@ function* chooseGenre({ payload }) {
   }
 }
 
+function* likeMusic({ payload }) {
+  try {
+    const { music } = yield call(api.updateLikeMusic, payload);
+
+    yield put(actions.musicLikeSuccess({ musicId: music._id, createdAt: music.createdAt }));
+  } catch (error) {
+    yield put(actions.musicLikeFailure(error.message));
+  }
+}
+
+function* dislikeMusic({ payload }) {
+  try {
+    const { music } = yield call(api.updateLikeMusic, payload);
+
+    yield put(actions.musicDislikeSuccess({ musicId: music._id }));
+  } catch (error) {
+    yield put(actions.musicDislikeFailure(error.message));
+  }
+}
+
 function* watchEditProfile() {
   yield takeLatest(actions.editProfileRequest.type, editProfile);
 }
@@ -65,9 +85,19 @@ function* watchChooseGenre() {
   yield takeLatest(actions.chooseGenreRequest.type, chooseGenre);
 }
 
+function* watchMusicLike() {
+  yield takeLatest(actions.musicLikeRequest.type, likeMusic);
+}
+
+function* watchMusicDislike() {
+  yield takeLatest(actions.musicDislikeRequest.type, dislikeMusic);
+}
+
 export default function* userProfileSagas() {
   yield all([
     call(watchEditProfile),
     call(watchChooseGenre),
+    call(watchMusicLike),
+    call(watchMusicDislike),
   ]);
 }
