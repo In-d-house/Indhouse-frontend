@@ -6,7 +6,6 @@ import * as actions from "../../reducers/user";
 import { profileType } from "../../constants";
 
 const Wrapper = styled.div`
-  
 `;
 
 const UserNameEditForm = ({ _id, currentName }) => {

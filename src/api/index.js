@@ -1,6 +1,11 @@
 import firebase from "../configs/firebase";
 
-import { socialType, photoLikeType, env } from "../constants";
+import {
+  env,
+  socialType,
+  photoLikeType,
+  sampleUserRange,
+} from "../constants";
 import makeArrayToQuery from "../utils/makeArrayQuery";
 
 const loginLocal = async user => {
@@ -232,19 +237,20 @@ const editUserLikeGenre = async genres => {
   }
 };
 
-const updateLikeUser = async ({ isLike, musicId }) => {
+const updateLikeMusic = async ({ isLike, musicId }) => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   const type = isLike ? photoLikeType.like : photoLikeType.disLike;
 
   try {
-    const response = await fetch(`${env.url}/musics/likeUser/${musicId}/${_id}/?type=${type}`, {
+    const response = await fetch(`${env.url}/users/profile/likeMusic/${_id}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
         "authorization": token,
       },
+      body: JSON.stringify({ type, musicId }),
     });
 
     const data = await response.json();
@@ -255,7 +261,7 @@ const updateLikeUser = async ({ isLike, musicId }) => {
   }
 };
 
-const getRecommendMusicByGenre = async genres => {
+const getMusicByLikeGenre = async genres => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   const query = makeArrayToQuery({
@@ -265,7 +271,53 @@ const getRecommendMusicByGenre = async genres => {
   });
 
   try {
-    const response = await fetch(`${env.url}/musics/recommendByGenre/${_id}/?${query}`, {
+    const response = await fetch(`${env.url}/musics/by-like-genre/${_id}/?${query}`, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+    });
+
+    const data = response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getMusicBySpecificMusic = async musics => {
+  const { _id, token } = JSON.parse(localStorage.user);
+
+  const query = makeArrayToQuery({
+    type: "_id",
+    key: "musicId",
+    data: musics,
+  });
+
+  try {
+    const response = await fetch(`${env.url}/musics/by-specific/${_id}/?${query}`, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+    });
+
+    const data = response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getSampleUser = async () => {
+  const { _id, token } = JSON.parse(localStorage.user);
+
+  try {
+    const response = await fetch(`${env.url}/users/sample/${_id}/?range=${sampleUserRange}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -291,9 +343,11 @@ export default {
   editUserLikeGenre,
   editUserProfileName,
   createMusic,
-  updateLikeUser,
+  updateLikeMusic,
   uploadUserProflePhoto,
   uploadMusicCoverPhoto,
   getGenre,
-  getRecommendMusicByGenre,
+  getMusicByLikeGenre,
+  getMusicBySpecificMusic,
+  getSampleUser,
 };

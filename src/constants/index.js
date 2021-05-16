@@ -36,13 +36,15 @@ const env = {
 
 const title = {
   home: "Hi, ",
-  tasteMusic: "Your music taste!",
-  tasteFind: "How about this music?",
+  tasteMusic: "YOUR MUSIC TASTE!",
+  tasteFind: "HOW ABOUT THIS MUSIC?",
   search: "SEARCH",
   setting: "SETTING",
   favoriteMusic: "FAVORITE MUSIC",
   favoriteArtist: "FAVORITE ARTIST",
 };
+
+const sampleUserRange = 10;
 
 export {
   form,
@@ -52,4 +54,5 @@ export {
   message,
   env,
   title,
+  sampleUserRange,
 };
