@@ -1,6 +1,11 @@
 import firebase from "../configs/firebase";
 
-import { socialType, photoLikeType, env } from "../constants";
+import {
+  env,
+  socialType,
+  photoLikeType,
+  sampleUserRange,
+} from "../constants";
 import makeArrayToQuery from "../utils/makeArrayQuery";
 
 const loginLocal = async user => {
@@ -281,7 +286,8 @@ const getMusicByLikeGenre = async genres => {
     return error;
   }
 };
-const getMusicByLikeMusic = async musics => {
+
+const getMusicBySpecificMusic = async musics => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   const query = makeArrayToQuery({
@@ -311,7 +317,7 @@ const getSampleUser = async () => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/users/sample/${_id}`, {
+    const response = await fetch(`${env.url}/users/sample/${_id}/?range=${sampleUserRange}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -342,6 +348,6 @@ export default {
   uploadMusicCoverPhoto,
   getGenre,
   getMusicByLikeGenre,
-  getMusicByLikeMusic,
+  getMusicBySpecificMusic,
   getSampleUser,
 };

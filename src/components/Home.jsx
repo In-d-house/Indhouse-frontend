@@ -37,6 +37,7 @@ const Home = () => {
     photoUrl,
     likeMusic,
     likeGenre,
+    createdAt,
   } = useSelector(state => state.user.profile);
 
   return (
@@ -61,7 +62,7 @@ const Home = () => {
           />
           <Route
             path="/users/taste_music/:user_id"
-            component={TasteMusic}
+            render={() => <TasteMusic date={createdAt} />}
           />
           <Route
             path="/users/favorite_music/:user_id"
@@ -73,7 +74,7 @@ const Home = () => {
           />
           <Route
             path="/users/find_taste/:user_id"
-            component={TasteFind}
+            render={() => <TasteFind likeGenre={likeGenre} likeMusic={likeMusic} />}
           />
           <Route
             path="/create_music"
