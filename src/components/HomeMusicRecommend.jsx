@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Music from "./shared/Music";
 
-import filterSameMusic from "../utils/filterSameMusic";
+import filterSameMusicOfUserToMusic from "../utils/filterSameMusicOfUserToMusic";
 import * as actions from "../reducers/user";
 import api from "../api";
 
@@ -34,7 +34,7 @@ const HomeMusicRecommend = ({ likeGenre, likeMusic }) => {
     const init = async () => {
       const { musics } = await api.getMusicByLikeGenre(likeGenre);
 
-      const filterdMusics = filterSameMusic(likeMusic, musics);
+      const filterdMusics = filterSameMusicOfUserToMusic(likeMusic, musics);
 
       setRecommendMusics(filterdMusics);
     };
@@ -63,7 +63,7 @@ const HomeMusicRecommend = ({ likeGenre, likeMusic }) => {
   const handleClick = async idx => {
     const music = recommendMusics[currentIndex + idx];
 
-    dispatch(actions.musicLikeRequest({ isLike: music.like, musicId: music._id }));
+    dispatch(actions.musicLikeRequest({ isLike: true, musicId: music._id }));
   };
 
   return (

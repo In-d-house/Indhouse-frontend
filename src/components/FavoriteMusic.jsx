@@ -11,7 +11,9 @@ const FavoriteMusic = ({ likeMusic }) => {
 
   useEffect(() => {
     const init = async () => {
-      const res = await api.getMusicByLikeMusic(likeMusic);
+      if (likeMusic.length === 0) return;
+
+      const res = await api.getMusicBySpecificMusic(likeMusic);
 
       setMusic(res.musics);
     };

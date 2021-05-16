@@ -44,6 +44,8 @@ const title = {
   favoriteArtist: "FAVORITE ARTIST",
 };
 
+const sampleUserRange = 10;
+
 export {
   form,
   socialType,
@@ -52,4 +54,5 @@ export {
   message,
   env,
   title,
+  sampleUserRange,
 };
