@@ -1,4 +1,4 @@
-const filterSameMusic = (musicLikedFromUser, musicFromServer) => {
+const filterSameMusicOfUserToMusic = (musicLikedFromUser, musicFromServer) => {
   const map = new Map();
 
   musicLikedFromUser.forEach(music => map.set(music.musicId));
@@ -6,4 +6,4 @@ const filterSameMusic = (musicLikedFromUser, musicFromServer) => {
   return musicFromServer.filter(music => !map.has(music._id));
 };
 
-export default filterSameMusic;
+export default filterSameMusicOfUserToMusic;
