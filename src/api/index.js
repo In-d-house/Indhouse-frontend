@@ -297,7 +297,7 @@ const getMusicBySpecificMusic = async musics => {
   });
 
   try {
-    const response = await fetch(`${env.url}/musics/by-like-music/${_id}/?${query}`, {
+    const response = await fetch(`${env.url}/musics/by-specific/${_id}/?${query}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
