@@ -62,7 +62,7 @@ const Home = () => {
           />
           <Route
             path="/users/taste_music/:user_id"
-            render={() => <TasteMusic date={createdAt} />}
+            render={() => <TasteMusic createdAt={createdAt} likeMusic={likeMusic} />}
           />
           <Route
             path="/users/favorite_music/:user_id"

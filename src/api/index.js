@@ -207,9 +207,9 @@ const getGenre = async () => {
   try {
     const response = await fetch(`${env.url}/genres`);
 
-    const { genres } = await response.json();
+    const data = await response.json();
 
-    return genres;
+    return data;
   } catch (error) {
     return error;
   }

@@ -1,28 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import Title from "./shared/Title";
+import SelectMaker from "./shared/SelectMaker";
 
-import { title } from "../constants";
+import { title, dateType } from "../constants";
+import makeYearRange from "../utils/makeYearRange";
+import useMusicClassification from "../hooks/useMusicClassification";
 
-const TasteMusic = ({ createdAt }) => {
-  const [type, setType] = useState("");
-  const [month, setMonth] = useState("");
+const types = [dateType.year, dateType.month];
+const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+const TasteMusic = ({ createdAt, likeMusic }) => {
+  const {
+    classificatedMusic,
+    type,
+    setType,
+    setYear,
+    setMonth,
+  } = useMusicClassification(likeMusic);
+
+  const years = makeYearRange(createdAt);
 
   return (
     <>
       <Title title={title.tasteMusic} />
+      <SelectMaker name={"type"} options={types} setValue={setType} />
       <div>
-        <select onChange={({ target }) => setType(target.value)} >
-          <option value="month" >Month</option>
-          <option value="year" >Year</option>
-        </select>
-        <form>
-          <input
-            type={type}
-            max={createdAt}
-            onChange={({ target }) => setMonth(target.value)}
-          />
-        </form>
+        {type === dateType.year && <SelectMaker name={"year"} options={years} setValue={setYear} />}
+        {type === dateType.month && <SelectMaker name={"year"} options={years} setValue={setYear} />}
+        {type === dateType.month && <SelectMaker name={"month"} options={months} setValue={setMonth} />}
+      </div>
+      <div>
+        D3
       </div>
     </>
   );

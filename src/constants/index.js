@@ -5,6 +5,11 @@ const form = {
   checkPassword: "checkPassword",
 };
 
+const dateType = {
+  year: "year",
+  month: "month",
+};
+
 const socialType = {
   google: "google",
   facebook: "facebook",
@@ -48,6 +53,7 @@ const sampleUserRange = 10;
 
 export {
   form,
+  dateType,
   socialType,
   profileType,
   photoLikeType,
