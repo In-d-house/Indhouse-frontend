@@ -6,7 +6,7 @@ import * as actions from "../reducers/user";
 
 const GenreChoose = () => {
   const dispatch = useDispatch();
-  const [genres, setGenres] = useState([]);
+  const [genre, setGenre] = useState([]);
   const inputZeroRef = useRef("");
   const inputOneRef = useRef("");
   const inputTwoRef = useRef("");
@@ -29,9 +29,9 @@ const GenreChoose = () => {
 
   useEffect(() => {
     const init = async () => {
-      const data = await api.getGenre();
+      const { genres } = await api.getGenre();
 
-      setGenres(data);
+      setGenre(genres);
     };
 
     init();
@@ -54,18 +54,18 @@ const GenreChoose = () => {
       <h1>Choose</h1>
       <h1>Your taste</h1>
       <form onSubmit={handleSubmit}>
-        {genres.map((genre, idx) => {
+        {genre.map((item, idx) => {
           return (
             <label
-              key={genre.name}
+              key={item.name}
             >
               <input
-                key={genre._id}
-                name={genre._id}
+                key={item._id}
+                name={item._id}
                 type="checkbox"
                 ref={refs[idx]}
               />
-              <span>{genre.name}</span>
+              <span>{item.name}</span>
             </label>
           );
         })}
