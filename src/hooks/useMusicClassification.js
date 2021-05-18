@@ -35,6 +35,8 @@ const useMusicClassification = musics => {
         filteredMusic = filteredByYear.filter(music => trimedMonth === getMonth(music.createdAt));
       }
 
+      if (filteredMusic.length === 0) return;
+
       const { genres } = await api.getGenre();
       const { musics: targetMusic } = await api.getMusicBySpecificMusic(filteredMusic);
 
@@ -49,6 +51,8 @@ const useMusicClassification = musics => {
   return {
     classificatedMusic,
     type,
+    year,
+    month,
     setType,
     setYear,
     setMonth,
