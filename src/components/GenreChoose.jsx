@@ -4,7 +4,7 @@ import useGenreChoose from "../hooks/useGenreChoose";
 
 const GenreChoose = () => {
   const { refs, genre, handleSubmit } = useGenreChoose();
-
+  console.log(genre);
   return (
     <>
       <h1>Choose</h1>
@@ -13,7 +13,7 @@ const GenreChoose = () => {
         {genre.map((item, idx) => {
           return (
             <label
-              key={item.name}
+              key={item._id}
             >
               <input
                 key={item._id}
