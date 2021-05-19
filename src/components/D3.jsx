@@ -29,7 +29,7 @@ const D3 = ({ tasteData }) => {
 
   useEffect(() => {
     let isDragging = false;
-
+    
     const circles = d3.range(circleNums).map((_, i) => {
       const type = i % 9;
       const data = tasteData[type];
@@ -77,7 +77,7 @@ const D3 = ({ tasteData }) => {
       .on("end", (event, d) => {
         if (!event.active) simulation.alphaTarget(0.03);
         d.fx = null;
-        d.fy = null;
+        d.fy = null
         isDragging = false;
       });
 
