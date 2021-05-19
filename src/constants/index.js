@@ -49,6 +49,18 @@ const title = {
   favoriteArtist: "FAVORITE ARTIST",
 };
 
+const genre = [
+  "Acoustic",
+  "Ballad",
+  "R&B",
+  "Pop",
+  "Dance",
+  "Hiphop",
+  "Rock",
+  "Electronic",
+  "Metal",
+];
+
 const sampleUserRange = 10;
 
 export {
@@ -60,5 +72,6 @@ export {
   message,
   env,
   title,
+  genre,
   sampleUserRange,
 };

@@ -1,6 +1,7 @@
 const classificateMusicToGenre = (genres, musics) => {
   const genreMap = new Map();
   const genreNameMap = new Map();
+  const totalMusic = musics.length;
 
   genres.forEach(genre => {
     genreMap.set(genre._id, 0);
@@ -15,9 +16,12 @@ const classificateMusicToGenre = (genres, musics) => {
 
   const classificatedMusic = [...genreMap].map(genre => {
     const genreName = genreNameMap.get(genre[0]);
+    const percentage = (genre[1] / totalMusic) * 100;
 
-    return [genreName, genre[1]];
+    return { genre: genreName, percentage };
   });
+
+  classificatedMusic.sort((a, b) => b.percentage - a.percentage);
 
   return classificatedMusic;
 };
