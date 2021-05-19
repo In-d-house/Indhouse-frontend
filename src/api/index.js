@@ -215,6 +215,32 @@ const getGenre = async () => {
   }
 };
 
+const getArtist = async artists => {
+  const { _id, token } = JSON.parse(localStorage.user);
+
+  const query = makeArrayToQuery({
+    type: "_id",
+    key: "artistId",
+    data: artists,
+  });
+
+  try {
+    const response = await fetch(`${env.url}/artists/by-specific/${_id}/?${query}`, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+    });
+
+    const data = response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 const editUserLikeGenre = async genres => {
   const { _id, token } = JSON.parse(localStorage.user);
 
@@ -347,6 +373,7 @@ export default {
   uploadUserProflePhoto,
   uploadMusicCoverPhoto,
   getGenre,
+  getArtist,
   getMusicByLikeGenre,
   getMusicBySpecificMusic,
   getSampleUser,

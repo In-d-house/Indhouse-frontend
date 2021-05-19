@@ -70,7 +70,7 @@ const Home = () => {
           />
           <Route
             path="/users/favorite_artist/:user_id"
-            component={FavoriteArtist}
+            render={() => <FavoriteArtist likeMusic={likeMusic} />}
           />
           <Route
             path="/users/find_taste/:user_id"
