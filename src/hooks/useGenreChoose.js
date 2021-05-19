@@ -1,11 +1,13 @@
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { genre } from "../constants";
+import api from "../api";
 import * as actions from "../reducers/user";
 
 const useGenreChoose = () => {
   const dispatch = useDispatch();
+  const [genre, setGenre] = useState([]);
+
   const inputZeroRef = useRef("");
   const inputOneRef = useRef("");
   const inputTwoRef = useRef("");
@@ -27,6 +29,16 @@ const useGenreChoose = () => {
     7: inputSevenRef,
     8: inputEightRef,
   };
+
+  useEffect(() => {
+    const getGenre = async () => {
+      const { genres } = await api.getGenre();
+
+      setGenre(genres);
+    };
+
+    getGenre();
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
