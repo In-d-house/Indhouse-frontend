@@ -6,15 +6,11 @@ const Svg = styled.svg`
   background-color: #e1e5ee;
   border: 1px solid black;
   border-radius: 0.2rem;
-
-  #tooltip {
-    background-color: black;
-    z-index: 100;
-  }
 `;
 
 const width = window.innerWidth * 0.7;
 const height = window.innerHeight * 0.6;
+const tooltipDuration = 200;
 const circleNums = 9 * (width / 15);
 const colorPallete = {
   "Acoustic": "#ffe66d",
@@ -29,9 +25,11 @@ const colorPallete = {
 };
 
 const D3 = ({ tasteData }) => {
-  const ref = useRef(null);
+  const d3Ref = useRef(null);
 
   useEffect(() => {
+    let isDragging = false;
+
     const circles = d3.range(circleNums).map((_, i) => {
       const type = i % 9;
       const data = tasteData[type];
@@ -49,26 +47,28 @@ const D3 = ({ tasteData }) => {
       .force("center", d3.forceCenter().x(width * 0.5).y(height * 0.5))
       .force("charge", d3.forceManyBody().strength(-50));
 
-    const svg = d3.select(ref.current)
+    const svg = d3.select(d3Ref.current)
       .attr("width", width)
       .attr("height", height);
 
-    const tooltip = d3.select(ref.current)
+    const tooltip = d3.select("body")
       .append("div")
       .attr("id", "tooltip")
       .style("position", "absolute")
-      .style("opacity", 0)
-      .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "1px")
-      .style("border-radius", "5px")
-      .style("padding", "10px");
+      .style("opacity", "0");
 
     const dragEventListener = d3.drag()
       .on("start", (event, d) => {
         if (!event.active) simulation.alphaTarget(0.03);
         d.fx = d.x;
         d.fy = d.y;
+
+        isDragging = true;
+
+        d3.select("#tooltip")
+          .transition()
+          .duration(tooltipDuration)
+          .style("opacity", 0);
       })
       .on("drag", (event, d) => {
         d.fx = event.x;
@@ -78,24 +78,31 @@ const D3 = ({ tasteData }) => {
         if (!event.active) simulation.alphaTarget(0.03);
         d.fx = null;
         d.fy = null;
+        isDragging = false;
       });
 
-    const mouseover = () => {
-      tooltip
-        .style("opacity", 1);
+    const mouseover = (_, d) => {
+      if (isDragging) return;
+
+      d3.select("#tooltip")
+        .transition()
+        .duration(tooltipDuration)
+        .style("opacity", 1)
+        .style("background-color", "white")
+        .style("padding", "10px")
+        .text(d.name);
     };
 
-    const mousemove = (event, d) => {
-      tooltip
-        .text(d.name)
-        .style("left", `${event.pageX + 90}px`)
-        .style("top", `${event.pageY}px`);
+    const mousemove = event => {
+      d3.select("#tooltip")
+        .style("left", `${event.pageX + 10}px`)
+        .style("top", `${event.pageY + 10}px`);
     };
 
     const mouseleave = () => {
-      tooltip
+      d3.select("#tooltip")
         .transition()
-        .duration(200)
+        .duration(tooltipDuration)
         .style("opacity", 0);
     };
 
@@ -128,7 +135,7 @@ const D3 = ({ tasteData }) => {
   }, [tasteData]);
 
   return (
-    <Svg ref={ref} width={width} height={height} />
+    <Svg ref={d3Ref} width={width} height={height} />
   );
 };
 
