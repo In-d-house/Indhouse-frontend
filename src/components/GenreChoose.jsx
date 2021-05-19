@@ -1,71 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
-import api from "../api";
-import * as actions from "../reducers/user";
+import useGenreChoose from "../hooks/useGenreChoose";
 
 const GenreChoose = () => {
-  const dispatch = useDispatch();
-  const [genres, setGenres] = useState([]);
-  const inputZeroRef = useRef("");
-  const inputOneRef = useRef("");
-  const inputTwoRef = useRef("");
-  const inputThreeRef = useRef("");
-  const inputFourRef = useRef("");
-  const inputFiveRef = useRef("");
-  const inputSixRef = useRef("");
-  const inputSevenRef = useRef("");
-
-  const refs = {
-    0: inputZeroRef,
-    1: inputOneRef,
-    2: inputTwoRef,
-    3: inputThreeRef,
-    4: inputFourRef,
-    5: inputFiveRef,
-    6: inputSixRef,
-    7: inputSevenRef,
-  };
-
-  useEffect(() => {
-    const init = async () => {
-      const data = await api.getGenre();
-
-      setGenres(data);
-    };
-
-    init();
-  }, []);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const choose = [];
-
-    for (let i = 0; i < Object.keys(refs).length; i++) {
-      if (refs[i].current.checked) choose.push({ genreId: refs[i].current.name });
-    }
-
-    dispatch(actions.chooseGenreRequest(choose));
-  };
-
+  const { refs, genre, handleSubmit } = useGenreChoose();
+  console.log(genre);
   return (
     <>
       <h1>Choose</h1>
       <h1>Your taste</h1>
       <form onSubmit={handleSubmit}>
-        {genres.map((genre, idx) => {
+        {genre.map((item, idx) => {
           return (
             <label
-              key={genre.name}
+              key={item._id}
             >
               <input
-                key={genre._id}
-                name={genre._id}
+                key={item._id}
+                name={item._id}
                 type="checkbox"
                 ref={refs[idx]}
               />
-              <span>{genre.name}</span>
+              <span>{item.name}</span>
             </label>
           );
         })}

@@ -5,6 +5,11 @@ const form = {
   checkPassword: "checkPassword",
 };
 
+const dateType = {
+  year: "year",
+  month: "month",
+};
+
 const socialType = {
   google: "google",
   facebook: "facebook",
@@ -44,15 +49,29 @@ const title = {
   favoriteArtist: "FAVORITE ARTIST",
 };
 
+const genre = [
+  "Acoustic",
+  "Ballad",
+  "R&B",
+  "Pop",
+  "Dance",
+  "Hiphop",
+  "Rock",
+  "Electronic",
+  "Metal",
+];
+
 const sampleUserRange = 10;
 
 export {
   form,
+  dateType,
   socialType,
   profileType,
   photoLikeType,
   message,
   env,
   title,
+  genre,
   sampleUserRange,
 };
