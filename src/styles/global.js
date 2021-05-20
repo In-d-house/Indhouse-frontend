@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
-    box-sizing:border-box;
+    box-sizing: border-box;
   }
 
   body {
@@ -16,10 +16,6 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
-    border-radius: 0.2rem;
-  }
-
-  div {
     border-radius: 0.2rem;
   }
 

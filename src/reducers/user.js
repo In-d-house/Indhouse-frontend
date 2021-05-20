@@ -73,7 +73,7 @@ const reducers = {
   },
   musicLikeSuccess: (state, action) => {
     state.isLoading = false;
-    state.profile.likeMusic.push(action.payload);
+    state.profile.likeMusic = [...state.profile.likeMusic, action.payload];
   },
   musicLikeFailure: (state, action) => {
     state.isLoading = false;
@@ -84,7 +84,8 @@ const reducers = {
   },
   musicDislikeSuccess: (state, action) => {
     state.isLoading = false;
-    state.profile.likeMusic.filter(music => music.musicId !== action.payload.musicId);
+    state.profile.likeMusic = state.profile.likeMusic
+      .filter(music => music.musicId !== action.payload.musicId);
   },
   musicDislikeFailure: (state, action) => {
     state.isLoading = false;

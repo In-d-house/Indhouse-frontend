@@ -1,43 +1,101 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
-  width: 20rem;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 0.2rem;
+  min-width: 20rem;
 
-  span {
-    left: 0;
+  .photo {
+    transition: 0.2s ease-out;
+
+    &:hover {
+      margin-bottom: 1rem;
+      transform: scale(1.1);
+      z-index: 10;
+    }
+  }
+
+  .photo-title {
+    bottom: 20px;
+    left: 20px;
+    padding: 0.5rem;
     color: ${({ theme }) => theme.colors.blue};
     font-size: ${({ theme }) => theme.fontSizes.lg};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 
+  .play {
+    color: ${({ theme }) => theme.colors.black};
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-weight: ${({ theme }) => theme.fontWeights.strong};
+    transition: 0.2s ease-out;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.red};
+    }
+  }
+
+  div {
+    background-color: ${({ theme }) => theme.colors.white};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    padding: 0.5rem 2rem;
+  }
+
   button {
-    right: 0;
+    background-color: ${({ theme }) => theme.colors.white};
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
   }
 
-  img {
-    width: 100%;
-    border-radius: 0.2rem;
+  .like {
+    fill: ${({ theme }) => theme.colors.red};
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      fill: ${({ theme }) => theme.colors.black};
+      transform: scale(1.1);
+    }
   }
 
-  .small-title {
-    font-size: ${({ theme }) => theme.fontSizes.small};
+  .dislike {
+    fill: ${({ theme }) => theme.colors.black};
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      fill: ${({ theme }) => theme.colors.red};
+      transform: scale(1.1);
+    }
   }
 `;
 
-const checkTitleLength = string => {
-  return string.length > 8 ? "small-title" : "";
-};
+const Music = ({ info, isLike, onClick }) => {
+  const [isClick, setIsClick] = useState(false);
 
-const Music = ({ info, onClick, order }) => {
   return (
     <Wrapper>
-      <img src={info.coverPhotoUrl} />
+      <img className="photo" src={info.coverPhotoUrl} />
+      <span className="photo-title">{info.title}</span>
       <div>
-        <span className={checkTitleLength(info.title)}>{info.title}</span>
-        <button onClick={() => onClick(order)} >Like</button>
+        <a href="https://www.youtube.com/watch?v=SeyjlHw-8FA" target="_blank" rel="noopener noreferrer">
+          {isLike && <span className="play">{isClick ? "Like!" : "PLAY"}</span>}
+          {!isLike && <span className="play">{isClick ? "Dislike!" : "PLAY"}</span>}
+        </a>
+        <button onClick={() => {
+          onClick(info._id, isLike);
+          setIsClick(true);
+        }}>
+          {isLike && <svg className="dislike" viewBox="0 0 24 24" ><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path></svg>}
+          {!isLike && <svg className="like" viewBox="0 0 24 24" ><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>}
+        </button>
       </div>
     </Wrapper>
   );
