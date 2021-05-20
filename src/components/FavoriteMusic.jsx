@@ -1,25 +1,22 @@
 import React from "react";
-import styled from "styled-components";
 
 import Title from "./shared/Title";
 import Music from "./shared/Music";
 
+import GridBox from "../styles/shared/gridBox";
+
 import useGetLikeMusic from "../hooks/useGetLikeMusic";
 import useLike from "../hooks/useLike";
 import { title } from "../constants";
-
-const Wrapper = styled.div`
-  
-`;
 
 const FavoriteMusic = ({ likeMusic }) => {
   const displayMusic = useGetLikeMusic(likeMusic);
   const handleLike = useLike();
 
   return (
-    <Wrapper>
+    <>
       <Title title={title.favoriteMusic} />
-      <div className="grid-box">
+      <GridBox>
         {displayMusic.map(music => {
           return (
             <Music
@@ -30,8 +27,8 @@ const FavoriteMusic = ({ likeMusic }) => {
             />
           );
         })}
-      </div>
-    </Wrapper>
+      </GridBox>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import MusicSlider from "./shared/MusicSlider";
 
-import useRecommendMusic from "../hooks/useRecommendMusic";
+import useMusicGeneratorBasedOnGenres from "../hooks/useMusicGeneratorBasedOnGenres";
 
 const Wrapper = styled.div`
   position: relative;
@@ -22,11 +22,11 @@ const Wrapper = styled.div`
 `;
 
 const HomeMusicRecommend = ({ likeGenre, likeMusic }) => {
-  const recommendMusic = useRecommendMusic(likeGenre, likeMusic);
+  const displayMusic = useMusicGeneratorBasedOnGenres(likeGenre, likeMusic);
 
   return (
     <Wrapper>
-      <MusicSlider musics={recommendMusic} isLike={true} />
+      <MusicSlider musics={displayMusic} isLike={true} />
       <span className="sub-title">These are the musics we recommend.</span>
     </Wrapper>
   );
