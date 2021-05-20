@@ -1,40 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Title from "./shared/Title";
 import Music from "./shared/Music";
 
+import GridBox from "../styles/shared/gridBox";
+
+import useGetLikeMusic from "../hooks/useGetLikeMusic";
+import useLike from "../hooks/useLike";
 import { title } from "../constants";
-import api from "../api";
 
 const FavoriteMusic = ({ likeMusic }) => {
-  const [musics, setMusic] = useState([]);
-
-  useEffect(() => {
-    const init = async () => {
-      if (likeMusic.length === 0) return;
-
-      const res = await api.getMusicBySpecificMusic(likeMusic);
-
-      setMusic(res.musics);
-    };
-
-    init();
-  }, [likeMusic]);
+  const displayMusic = useGetLikeMusic(likeMusic);
+  const handleLike = useLike();
 
   return (
     <>
       <Title title={title.favoriteMusic} />
-      <div>
-        {musics.map((music, idx) => {
+      <GridBox>
+        {displayMusic.map(music => {
           return (
             <Music
               key={music._id}
               info={music}
-              order={idx}
+              isLike={false}
+              onClick={handleLike}
             />
           );
         })}
-      </div>
+      </GridBox>
     </>
   );
 };

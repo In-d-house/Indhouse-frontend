@@ -1,85 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styled from "styled-components";
 
-import Music from "./shared/Music";
+import MusicSlider from "./shared/MusicSlider";
 
-import filterSameMusicOfUserToMusic from "../utils/filterSameMusicOfUserToMusic";
-import * as actions from "../reducers/user";
-import api from "../api";
+import useMusicGeneratorBasedOnGenres from "../hooks/useMusicGeneratorBasedOnGenres";
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  .music-container {
-    display: flex;
-  }
-
-  .switch {
-    width: 3rem;
-    height: 3rem;
+  .sub-title {
+    margin: 10vh;
+    color: ${({ theme }) => theme.colors.yellow};
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 `;
 
-const VIEW_LENGTH = 3;
-
 const HomeMusicRecommend = ({ likeGenre, likeMusic }) => {
-  const dispatch = useDispatch();
-  const [recommendMusics, setRecommendMusics] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const init = async () => {
-      const { musics } = await api.getMusicByLikeGenre(likeGenre);
-
-      const filterdMusics = filterSameMusicOfUserToMusic(likeMusic, musics);
-
-      setRecommendMusics(filterdMusics);
-    };
-
-    init();
-  }, [likeGenre, likeMusic]);
-
-  const prevSlide = () => {
-    const index = currentIndex === 0 ? recommendMusics.length - 1 : currentIndex - 1;
-
-    setCurrentIndex(index);
-  };
-
-  const nextSlide = () => {
-    const index = currentIndex === recommendMusics.length - 1 ? 0 : currentIndex + 1;
-
-    setCurrentIndex(index);
-  };
-
-  const activeMusics = recommendMusics.slice(currentIndex, currentIndex + VIEW_LENGTH);
-
-  const musicToDisplay = activeMusics.length < VIEW_LENGTH
-    ? [...activeMusics, ...recommendMusics.slice(0, VIEW_LENGTH - activeMusics.length)]
-    : activeMusics;
-
-  const handleClick = async idx => {
-    const music = recommendMusics[currentIndex + idx];
-
-    dispatch(actions.musicLikeRequest({ isLike: true, musicId: music._id }));
-  };
+  const displayMusic = useMusicGeneratorBasedOnGenres(likeGenre, likeMusic);
 
   return (
     <Wrapper>
-      <button className="switch" onClick={prevSlide} >{`<`}</button>
-      <div className="music-container" >
-        {musicToDisplay.map((music, idx) => (
-          <Music
-            key={music._id}
-            info={music}
-            onClick={handleClick}
-            order={idx}
-          />
-        ))}
-      </div>
-      <button className="switch" onClick={nextSlide} >{`>`}</button>
+      <MusicSlider musics={displayMusic} isLike={true} />
+      <span className="sub-title">These are the musics we recommend.</span>
     </Wrapper>
   );
 };

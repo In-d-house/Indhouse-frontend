@@ -4,7 +4,7 @@ import useGenreChoose from "../hooks/useGenreChoose";
 
 const GenreChoose = () => {
   const { refs, genre, handleSubmit } = useGenreChoose();
-  console.log(genre);
+
   return (
     <>
       <h1>Choose</h1>

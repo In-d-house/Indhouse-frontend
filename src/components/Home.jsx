@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
-import Search from "./Search";
 import Setting from "./Setting";
 import HomeNav from "./HomeNav";
 import HomeMain from "./HomeMain";
@@ -15,18 +14,15 @@ import FavoriteArtist from "./FavoriteArtist";
 import MusicCreateForm from "./forms/MusicCreateForm";
 
 const Page = styled.div`
-  position: relative;
+  display: flex;
   background-color: ${({ theme }) => theme.colors.lightIndigo};
+  min-width: 100vw;
   min-height: 100vh;
-  height: 100%;
   color: ${({ theme }) => theme.colors.white};
 
   .contents {
-    position: absolute;
-    top: 0;
-    margin-left: 20rem;
-    padding: 5rem;
-    width: 80%;
+    width: 85vw;
+    margin-top: 5vh;
   }
 `;
 
@@ -51,10 +47,6 @@ const Home = () => {
             exact
             path="/"
             render={() => <HomeMain name={name} likeGenre={likeGenre} likeMusic={likeMusic} />}
-          />
-          <Route
-            path="/search/:user_id"
-            component={Search}
           />
           <Route
             path="/users/setting/:user_id"

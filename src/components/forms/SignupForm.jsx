@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styled from "styled-components";
 
-import FormBase from "../../shared/FormBase";
+import FormBase from "../../styles/shared/formBasee";
 
 import * as actions from "../../reducers/user";
 import { form, message } from "../../constants";
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   .notice {
     margin-top: 2rem;
     color: ${({ theme }) => theme.colors.yellow};
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 `;

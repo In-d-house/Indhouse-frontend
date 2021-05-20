@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "../styles/themes";
+import theme from "../themes";
 
 const FormBase = styled.div`
   background-color: ${theme.colors.white};
@@ -15,7 +15,7 @@ const FormBase = styled.div`
     width: 100%;
 
     h1 {
-      font-size: ${theme.fontSizes.xxl};
+      font-size: ${theme.fontSizes.authFormSize};
       font-weight: ${theme.fontWeights.medium};
       color: ${theme.colors.blue};
       text-align: left;
