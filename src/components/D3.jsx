@@ -3,9 +3,7 @@ import styled from "styled-components";
 import * as d3 from "d3";
 
 const Svg = styled.svg`
-  background-color: #e1e5ee;
-  border: 1px solid black;
-  border-radius: 0.2rem;
+  background-color: ${({ theme }) => theme.colors.lightIndigo};
 `;
 
 const width = window.innerWidth * 0.7;

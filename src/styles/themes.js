@@ -1,14 +1,11 @@
 const calcRem = size => `${size / 16}rem`;
 
 const fontSizes = {
-  xsmall: calcRem(13),
   small: calcRem(16),
-  medium: calcRem(20),
-  base: calcRem(25),
-  lg: calcRem(30),
+  medium: calcRem(25),
+  lg: calcRem(35),
   xl: calcRem(40),
-  xxl: calcRem(50),
-  xxxl: calcRem(60),
+  miniTitleSize: calcRem(60),
   titleSize: calcRem(150),
 };
 

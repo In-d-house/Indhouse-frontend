@@ -4,11 +4,9 @@ import styled from "styled-components";
 
 const Nav = styled.div`
   background-color: ${({ theme }) => theme.colors.indigo};
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 20rem;
-  min-height: 100vh;
+  width: 20vw;
+  min-width: 15rem;
+  max-width: 25rem;
 `;
 
 const HomeNav = ({ userId }) => {
@@ -17,7 +15,6 @@ const HomeNav = ({ userId }) => {
       <Link to="/" >In-d house</Link>
       <div>
         <Link to="/" >HOME</Link>
-        <Link to={`/search/${userId}`} >SEARCH</Link>
         <Link to={`/users/setting/${userId}`} >SETTING</Link>
       </div>
       <div>
