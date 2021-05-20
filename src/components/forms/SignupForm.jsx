@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styled from "styled-components";
 
-import FormBase from "../../styles/shared/formBasee";
+import FormBase from "../../styles/shared/formBase";
 
 import * as actions from "../../reducers/user";
 import { form, message } from "../../constants";

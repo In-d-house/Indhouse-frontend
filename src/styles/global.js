@@ -12,6 +12,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   button {
