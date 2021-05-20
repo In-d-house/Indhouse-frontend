@@ -21,7 +21,7 @@ const Page = styled.div`
   color: ${({ theme }) => theme.colors.white};
 
   .contents {
-    width: 80vw;
+    width: 85vw;
     margin-top: 5vh;
   }
 `;
