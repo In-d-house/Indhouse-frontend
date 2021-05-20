@@ -11,12 +11,12 @@ const useMusicClassification = musics => {
   const [type, setType] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
-  const [classificatedMusic, setClassificatedMusic] = useState([]);
+  const [classificatedData, setClassificatedData] = useState([]);
 
   useEffect(() => {
     setYear("");
     setMonth("");
-    setClassificatedMusic([]);
+    setClassificatedData([]);
   }, [type]);
 
   useEffect(() => {
@@ -42,14 +42,14 @@ const useMusicClassification = musics => {
 
       const classifiedMusic = classificateMusicToGenre(genres, targetMusic);
 
-      setClassificatedMusic(classifiedMusic);
+      setClassificatedData(classifiedMusic);
     };
 
     classificateMusic();
   }, [year, month, musics]);
 
   return {
-    classificatedMusic,
+    classificatedData,
     type,
     year,
     month,
