@@ -7,6 +7,7 @@ import HomeMusicRecommend from "./HomeMusicRecommend";
 import { title } from "../constants";
 
 const Wrapper = styled.div`
+  width: 100%;
 `;
 
 const HomeMain = ({ name, likeGenre, likeMusic }) => {

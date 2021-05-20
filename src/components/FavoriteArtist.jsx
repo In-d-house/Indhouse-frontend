@@ -9,7 +9,7 @@ import { title } from "../constants";
 
 const width = window.innerWidth * 0.7;
 const height = window.innerHeight * 0.5;
-const colorPallete = ["#FFFFFF", "#509BF5", "#F7E32D"];
+const colorPallete = ["#F7E32D", "#509BF5", "#FFFFFF"];
 const fontSizes = ["30", "50", "70"];
 
 const FavoriteArtist = ({ likeMusic }) => {
@@ -45,18 +45,18 @@ const FavoriteArtist = ({ likeMusic }) => {
         .append("text")
         .style("font-size", d => d.size)
         .style("fill", (_, i) => color(i))
+        .style("font-weight", 900)
         .attr("text-anchor", "middle")
-        .style("font-family", "Moderrate")
         .transition()
         .duration(500)
-        .attr("transform", d => `translate(${[d.x + 10, d.y + 10]})`)
+        .attr("transform", d => `translate(${[d.x, d.y]})`)
         .text(d => d.text);
     };
 
     cloud()
       .size([width, height])
       .words(dataSet)
-      .padding(1)
+      .padding(4)
       .rotate(_ => 0)
       .fontSize(d => d.size)
       .on("end", draw)
