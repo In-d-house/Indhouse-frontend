@@ -48,6 +48,13 @@ const useMusicClassification = musics => {
     classificateMusic();
   }, [year, month, musics]);
 
+  const handleExit = () => {
+    setType("");
+    setYear("");
+    setMonth("");
+    setClassificatedData([]);
+  };
+
   return {
     classificatedData,
     type,
@@ -56,6 +63,7 @@ const useMusicClassification = musics => {
     setType,
     setYear,
     setMonth,
+    handleExit,
   };
 };
 
