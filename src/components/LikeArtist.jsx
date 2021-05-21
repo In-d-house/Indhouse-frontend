@@ -9,13 +9,15 @@ import useGetArtists from "../hooks/useGetArtists";
 import { title } from "../constants";
 
 const width = window.innerWidth * 0.7;
-const height = window.innerHeight * 0.5;
+const height = window.innerHeight * 0.6;
 const colorPallete = ["#F7E32D", "#509BF5", "#FFFFFF"];
-const fontSizes = ["30", "50", "70"];
+const fontSizes = ["40", "50", "55"];
 
 const Wrapper = styled.div`
-  svg {
-    margin-left: 5vw;
+  .d3-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -73,7 +75,9 @@ const FavoriteArtist = ({ likeMusic }) => {
   return (
     <Wrapper>
       <Title title={title.favoriteArtist} />
-      <svg ref={d3Ref} width={width} height={height} />
+      <div className="d3-box">
+        <svg ref={d3Ref} width={width} height={height} />
+      </div>
     </Wrapper>
   );
 };

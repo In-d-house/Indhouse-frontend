@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   }
 
   h1 {
-    font-size: ${({ theme }) => theme.fontSizes.authFormSize};
+    font-size: ${({ theme }) => theme.fontSizes.miniTitleSize};
     font-weight: ${({ theme }) => theme.fontWeights.medium};
     color: ${({ theme }) => theme.colors.blue};
     text-align: left;

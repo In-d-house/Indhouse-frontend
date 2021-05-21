@@ -6,9 +6,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px;
-  border-radius: 0.2rem;
-  min-width: 20rem;
+  padding: 7px;
+  margin-bottom: 7px;
+  min-width: 14rem;
+  max-width: 20rem;
 
   .photo {
     transition: 0.2s ease-out;
@@ -25,13 +26,13 @@ const Wrapper = styled.div`
     left: 20px;
     padding: 0.5rem;
     color: ${({ theme }) => theme.colors.blue};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.musicTitle};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 
   .play {
     color: ${({ theme }) => theme.colors.black};
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
     transition: 0.2s ease-out;
 
@@ -46,13 +47,12 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     border-radius: 25px;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
   }
 
   button {
     background-color: ${({ theme }) => theme.colors.white};
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
     border-radius: 50%;
   }
 
