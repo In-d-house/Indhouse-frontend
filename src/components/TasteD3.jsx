@@ -14,18 +14,17 @@ const Svg = styled.svg`
 const width = window.innerWidth;
 const height = window.innerHeight;
 const tooltipDuration = 200;
-const circleNums = 9 * (width / 15);
-// const circleNums = 9 * 4;
+const circleNums = 9 * (width / 20);
 const colorPallete = {
-  "Acoustic": "#ffe66d",
-  "Ballad": "#b08968",
-  "R&B": "#2CC7C2",
-  "Pop": "#76c893",
-  "Dance": "#447FDE",
-  "Hiphop": "#aa7dce",
-  "Rock": "#DD44A0",
-  "Electronic": "#FC6067",
-  "Metal": "#495057",
+  "Acoustic": "#788bff",
+  "Ballad": "#ffee93",
+  "R&B": "#0582ca",
+  "Pop": "#FF8401",
+  "Dance": "#76c893",
+  "Hiphop": "#A8B8D2",
+  "Rock": "#aa7dce",
+  "Electronic": "#DD44A0",
+  "Metal": "#FC6067",
 };
 
 const TasteD3 = ({ tasteData }) => {

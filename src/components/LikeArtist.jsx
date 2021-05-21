@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
 import * as d3 from "d3";
 import cloud from "d3-cloud";
 
@@ -11,6 +12,12 @@ const width = window.innerWidth * 0.7;
 const height = window.innerHeight * 0.5;
 const colorPallete = ["#F7E32D", "#509BF5", "#FFFFFF"];
 const fontSizes = ["30", "50", "70"];
+
+const Wrapper = styled.div`
+  svg {
+    margin-left: 5vw;
+  }
+`;
 
 const FavoriteArtist = ({ likeMusic }) => {
   const { artist } = useGetArtists(likeMusic);
@@ -64,10 +71,10 @@ const FavoriteArtist = ({ likeMusic }) => {
   }, [artist]);
 
   return (
-    <>
+    <Wrapper>
       <Title title={title.favoriteArtist} />
       <svg ref={d3Ref} width={width} height={height} />
-    </>
+    </Wrapper>
   );
 };
 
