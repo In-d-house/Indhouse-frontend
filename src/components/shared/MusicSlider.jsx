@@ -18,7 +18,11 @@ const Wrapper = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background-color:${({ theme }) => theme.colors.blue};
+<<<<<<< HEAD
     border-radius: 50px;
+=======
+    border-radius: 1rem;
+>>>>>>> origin/develop
   }
 `;
 

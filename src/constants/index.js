@@ -35,31 +35,15 @@ const message = {
   failLogout: "로그아웃 실패",
 };
 
-const env = {
-  url: process.env.REACT_APP_LOCAL_URL,
-};
-
 const title = {
   home: "Hi, ",
   tasteMusic: "YOUR MUSIC TASTE!",
   tasteFind: "HOW ABOUT THIS MUSIC?",
   search: "SEARCH",
   setting: "SETTING",
-  favoriteMusic: "FAVORITE MUSIC",
-  favoriteArtist: "FAVORITE ARTIST",
+  favoriteMusic: "MY LIKE MUSIC",
+  favoriteArtist: "MY LIKE ARTIST",
 };
-
-const genre = [
-  "Acoustic",
-  "Ballad",
-  "R&B",
-  "Pop",
-  "Dance",
-  "Hiphop",
-  "Rock",
-  "Electronic",
-  "Metal",
-];
 
 const sampleUserRange = 10;
 
@@ -69,9 +53,7 @@ export {
   socialType,
   profileType,
   photoLikeType,
-  message,
-  env,
   title,
-  genre,
+  message,
   sampleUserRange,
 };

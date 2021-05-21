@@ -1,16 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import D3 from "./D3";
 import Title from "./shared/Title";
 import SelectMaker from "./shared/SelectMaker";
+import TasteMusicInfo from "./TasteMusicInfo";
+import TasteD3 from "./TasteD3";
 
 import { title, dateType } from "../constants";
 import makeYearRange from "../utils/makeYearRange";
 import useMusicClassification from "../hooks/useMusicClassification";
-
-const Wrapper = styled.div`
-`;
 
 const Content = styled.div`
   display: flex;
@@ -27,7 +25,7 @@ const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
 const TasteMusic = ({ createdAt, likeMusic }) => {
   const {
-    classificatedMusic,
+    classificatedData,
     type,
     year,
     month,
@@ -39,7 +37,7 @@ const TasteMusic = ({ createdAt, likeMusic }) => {
   const years = makeYearRange(createdAt);
 
   return (
-    <Wrapper>
+    <>
       <Title title={title.tasteMusic} />
       <SelectMaker name={"type"} options={dateTypes} setValue={setType} />
       <div>
@@ -48,21 +46,14 @@ const TasteMusic = ({ createdAt, likeMusic }) => {
         {type === dateType.month && <SelectMaker name={"month"} options={months} setValue={setMonth} />}
       </div>
       <Content>
-        {!!classificatedMusic.length && <D3 tasteData={classificatedMusic} />}
-        {!!classificatedMusic.length && <div>
-          <span>{`${year}. ${month}`}</span>
-          <div>
-            {classificatedMusic.map((genre, i) => {
-              return (
-                <div key={i}>
-                  {genre.genre}
-                </div>
-              );
-            })}
-          </div>
-        </div>}
+        {!!classificatedData.length && <TasteD3 tasteData={classificatedData} />}
+        {!!classificatedData.length && <TasteMusicInfo
+          year={year}
+          month={month}
+          classificatedData={classificatedData}
+        />}
       </Content>
-    </Wrapper>
+    </>
   );
 };
 
