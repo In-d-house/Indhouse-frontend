@@ -6,6 +6,7 @@ const Nav = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.indigo};
   min-width: 15rem;
+  z-index: 20;
 
   .fixed-box {
     position: fixed;
@@ -60,7 +61,7 @@ const Nav = styled.div`
     transition: 0.2s ease-out;
 
     &:hover {
-      border: 4px solid ${({ theme }) => theme.colors.yellow};
+      border: 3px solid ${({ theme }) => theme.colors.yellow};
       color: ${({ theme }) => theme.colors.yellow};
     }
   }

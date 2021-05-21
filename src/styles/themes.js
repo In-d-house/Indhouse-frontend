@@ -7,6 +7,7 @@ const fontSizes = {
   lg: calcRem(35),
   xl: calcRem(40),
   miniTitleSize: calcRem(50),
+  tasteTitleSize: calcRem(80),
   titleSize: calcRem(150),
 };
 

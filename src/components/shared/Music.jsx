@@ -21,7 +21,7 @@ const Wrapper = styled.div`
     }
   }
 
-  .photo-title {
+  .music-title {
     bottom: 20px;
     left: 20px;
     padding: 0.5rem;
@@ -77,13 +77,21 @@ const Wrapper = styled.div`
   }
 `;
 
+const substractString = string => {
+  if (string.length > 9) {
+    return `${string.substring(0, 9)}...`;
+  }
+
+  return string;
+};
+
 const Music = ({ info, isLike, onClick }) => {
   const [isClick, setIsClick] = useState(false);
 
   return (
     <Wrapper>
       <img className="photo" src={info.coverPhotoUrl} />
-      <span className="photo-title">{info.title}</span>
+      <span className="music-title">{substractString(info.title)}</span>
       <div>
         <a href="https://www.youtube.com/watch?v=SeyjlHw-8FA" target="_blank" rel="noopener noreferrer">
           {isLike && <span className="play">{isClick ? "Like!" : "PLAY"}</span>}

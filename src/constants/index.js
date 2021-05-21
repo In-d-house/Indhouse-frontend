@@ -45,6 +45,18 @@ const title = {
   favoriteArtist: "MY LIKE ARTIST",
 };
 
+const colorPallete = {
+  "Acoustic": "#80ffdb",
+  "Ballad": "#fdffb6",
+  "R&B": "#0582ca",
+  "Pop": "#FF8401",
+  "Dance": "#90f1ef",
+  "Hiphop": "#A8B8D2",
+  "Rock": "#0582ca",
+  "Electronic": "#f94144",
+  "Metal": "#343a40",
+};
+
 const sampleUserRange = 10;
 
 export {
@@ -56,4 +68,5 @@ export {
   title,
   message,
   sampleUserRange,
+  colorPallete,
 };
