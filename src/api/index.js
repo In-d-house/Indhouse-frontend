@@ -1,16 +1,17 @@
 import firebase from "../configs/firebase";
 
 import {
-  env,
   socialType,
   photoLikeType,
   sampleUserRange,
 } from "../constants";
 import makeArrayToQuery from "../utils/makeArrayQuery";
 
+const url = process.env.REACT_APP_LOCAL_URL;
+
 const loginLocal = async user => {
   try {
-    const response = await fetch(`${env.url}/auth/login/local`, {
+    const response = await fetch(`${url}/auth/login/local`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -29,7 +30,7 @@ const loginLocal = async user => {
 
 const loginSocial = async user => {
   try {
-    const response = await fetch(`${env.url}/auth/login/social`, {
+    const response = await fetch(`${url}/auth/login/social`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -49,7 +50,7 @@ const loginSocial = async user => {
 const loginRefresh = async user => {
   const { _id, token } = user;
   try {
-    const response = await fetch(`${env.url}/auth/login/refresh/${_id}`, {
+    const response = await fetch(`${url}/auth/login/refresh/${_id}`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -86,7 +87,7 @@ const loginSocialByType = async type => {
 
 const signup = async user => {
   try {
-    const response = await fetch(`${env.url}/auth/signup`, {
+    const response = await fetch(`${url}/auth/signup`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -105,7 +106,7 @@ const signup = async user => {
 
 const logout = async ({ _id, token }) => {
   try {
-    const response = await fetch(`${env.url}/auth/logout/${_id}`, {
+    const response = await fetch(`${url}/auth/logout/${_id}`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -126,7 +127,7 @@ const editUserProfileName = async ({ name, _id }) => {
   const { token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/users/profile/name/${_id}`, {
+    const response = await fetch(`${url}/users/profile/name/${_id}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",
@@ -148,7 +149,7 @@ const uploadUserProflePhoto = async ({ file }) => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/users/profile/photo/${_id}`, {
+    const response = await fetch(`${url}/users/profile/photo/${_id}`, {
       method: "PATCH",
       headers: {
         "authorization": token,
@@ -168,7 +169,7 @@ const uploadMusicCoverPhoto = async ({ file }) => {
   const { token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/musics/cover-photo`, {
+    const response = await fetch(`${url}/musics/cover-photo`, {
       method: "PATCH",
       headers: {
         "authorization": token,
@@ -186,7 +187,7 @@ const uploadMusicCoverPhoto = async ({ file }) => {
 
 const createMusic = async music => {
   try {
-    const response = await fetch(`${env.url}/musics`, {
+    const response = await fetch(`${url}/musics`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -205,7 +206,7 @@ const createMusic = async music => {
 
 const getGenre = async () => {
   try {
-    const response = await fetch(`${env.url}/genres`);
+    const response = await fetch(`${url}/genres`);
 
     const data = await response.json();
 
@@ -225,7 +226,7 @@ const getArtist = async artists => {
   });
 
   try {
-    const response = await fetch(`${env.url}/artists/by-specific/${_id}/?${query}`, {
+    const response = await fetch(`${url}/artists/by-specific/${_id}/?${query}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -245,7 +246,7 @@ const editUserLikeGenre = async genres => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/users/profile/likeGenre/${_id}`, {
+    const response = await fetch(`${url}/users/profile/likeGenre/${_id}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",
@@ -269,7 +270,7 @@ const updateLikeMusic = async ({ isLike, musicId }) => {
   const type = isLike ? photoLikeType.like : photoLikeType.disLike;
 
   try {
-    const response = await fetch(`${env.url}/users/profile/likeMusic/${_id}`, {
+    const response = await fetch(`${url}/users/profile/likeMusic/${_id}`, {
       method: "PATCH",
       headers: {
         "Accept": "application/json",
@@ -297,7 +298,7 @@ const getMusicByLikeGenre = async genres => {
   });
 
   try {
-    const response = await fetch(`${env.url}/musics/by-like-genre/${_id}/?${query}`, {
+    const response = await fetch(`${url}/musics/by-like-genre/${_id}/?${query}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -323,7 +324,7 @@ const getMusicBySpecificMusic = async musics => {
   });
 
   try {
-    const response = await fetch(`${env.url}/musics/by-specific/${_id}/?${query}`, {
+    const response = await fetch(`${url}/musics/by-specific/${_id}/?${query}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -343,7 +344,7 @@ const getSampleUser = async () => {
   const { _id, token } = JSON.parse(localStorage.user);
 
   try {
-    const response = await fetch(`${env.url}/users/sample/${_id}/?range=${sampleUserRange}`, {
+    const response = await fetch(`${url}/users/sample/${_id}/?range=${sampleUserRange}`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",

@@ -3,13 +3,23 @@ import styled from "styled-components";
 import * as d3 from "d3";
 
 const Svg = styled.svg`
+<<<<<<< HEAD:src/components/D3.jsx
   background-color: ${({ theme }) => theme.colors.lightIndigo};
+=======
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+>>>>>>> origin/develop:src/components/TasteD3.jsx
 `;
 
-const width = window.innerWidth * 0.7;
-const height = window.innerHeight * 0.6;
+const width = window.innerWidth;
+const height = window.innerHeight;
 const tooltipDuration = 200;
 const circleNums = 9 * (width / 15);
+// const circleNums = 9 * 4;
 const colorPallete = {
   "Acoustic": "#ffe66d",
   "Ballad": "#b08968",
@@ -22,7 +32,7 @@ const colorPallete = {
   "Metal": "#495057",
 };
 
-const D3 = ({ tasteData }) => {
+const TasteD3 = ({ tasteData }) => {
   const d3Ref = useRef(null);
 
   useEffect(() => {
@@ -33,7 +43,7 @@ const D3 = ({ tasteData }) => {
       const data = tasteData[type];
       if (data.percentage === 0) return { radius: 0 };
 
-      const radius = (data.percentage / 10) * 15;
+      const radius = (data.percentage / 10) * 20;
       const color = colorPallete[data.genre];
 
       return { radius, color, name: data.genre };
@@ -43,7 +53,8 @@ const D3 = ({ tasteData }) => {
       .force("forceX", d3.forceX().strength(0.1).x(width * 0.5))
       .force("forceY", d3.forceY().strength(0.1).y(height * 0.5))
       .force("center", d3.forceCenter().x(width * 0.5).y(height * 0.5))
-      .force("charge", d3.forceManyBody().strength(-50));
+      .force("charge", d3.forceManyBody().strength(-100))
+      .alphaDecay(0);
 
     const svg = d3.select(d3Ref.current)
       .attr("width", width)
@@ -137,4 +148,4 @@ const D3 = ({ tasteData }) => {
   );
 };
 
-export default D3;
+export default TasteD3;

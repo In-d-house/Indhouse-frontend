@@ -9,16 +9,21 @@ import HomeMain from "./HomeMain";
 import UserPhoto from "./UserPhoto";
 import TasteFind from "./TasteFind";
 import TasteMusic from "./TasteMusic";
-import FavoriteMusic from "./FavoriteMusic";
-import FavoriteArtist from "./FavoriteArtist";
+import FavoriteMusic from "./LikeMusic";
+import FavoriteArtist from "./LikeArtist";
 import MusicCreateForm from "./forms/MusicCreateForm";
 
 const Page = styled.div`
+<<<<<<< HEAD
+=======
+  position: relative;
+>>>>>>> origin/develop
   display: flex;
   background-color: ${({ theme }) => theme.colors.lightIndigo};
   min-width: 100vw;
   min-height: 100vh;
   color: ${({ theme }) => theme.colors.white};
+  overflow: hidden;
 
   .contents {
     width: 85vw;
