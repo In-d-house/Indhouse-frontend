@@ -15,7 +15,7 @@ const FormBase = styled.div`
     width: 100%;
 
     h1 {
-      font-size: ${theme.fontSizes.authFormSize};
+      font-size: ${theme.fontSizes.miniTitleSize};
       font-weight: ${theme.fontWeights.medium};
       color: ${theme.colors.blue};
       text-align: left;
@@ -24,13 +24,13 @@ const FormBase = styled.div`
 
   .form-input {
     position: relative;
-    height: 4rem;
+    height: 3rem;
 
     input {
       width: 100%;
       padding: 0.2rem;
       border-bottom: 1px solid ${theme.colors.gray};
-      font-size: ${theme.fontSizes.medium};
+      font-size: ${theme.fontSizes.small};
 
       &:focus {
         outline: none;

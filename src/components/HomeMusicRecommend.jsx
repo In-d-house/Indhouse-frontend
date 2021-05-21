@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   .sub-title {
     margin: 10vh;
     color: ${({ theme }) => theme.colors.yellow};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.medium};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 `;

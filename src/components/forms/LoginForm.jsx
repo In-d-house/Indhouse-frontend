@@ -9,6 +9,9 @@ import FormBase from "../../styles/shared/formBase";
 
 import * as actions from "../../reducers/user";
 import { form, socialType, message } from "../../constants";
+import googleLogo from "../../assets/googleLogo.png";
+import facebookLogo from "../../assets/facebookLogo.png";
+import twitterLogo from "../../assets/twitterLogo.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,6 +24,29 @@ const Wrapper = styled.div`
     color: ${({ theme }) => theme.colors.yellow};
     font-size: ${({ theme }) => theme.fontSizes.small};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+
+    button {
+      background-color: ${({ theme }) => theme.colors.white};
+      width: 3.7rem;
+      padding: 0.5rem;
+    }
+
+    button:nth-child(3) {
+      width: 2.9rem;
+      margin-left: 0.4rem;
+      padding: 0;
+    }
+
+    img {
+      width: 100%;
+    }
   }
 `;
 
@@ -65,9 +91,15 @@ const LoginForm = () => {
           </div>
         </form>
         <div className="buttons" >
-          <button onClick={() => handleLoginSocial(socialType.google)} >Google</button>
-          <button onClick={() => handleLoginSocial(socialType.facebook)} >Facebook</button>
-          <button>Twitter</button>
+          <button onClick={() => handleLoginSocial(socialType.google)} >
+            <img src={googleLogo} />
+          </button>
+          <button onClick={() => handleLoginSocial(socialType.facebook)} >
+          <img src={facebookLogo} />
+          </button>
+          <button>
+          <img src={twitterLogo} />
+          </button>
         </div>
       </FormBase>
       <span className="notice">We will find your taste in music. Just check.</span>

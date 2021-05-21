@@ -10,13 +10,11 @@ import { title, dateType } from "../constants";
 import makeYearRange from "../utils/makeYearRange";
 import useMusicClassification from "../hooks/useMusicClassification";
 
-const Content = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  span {
-    font-size: 100px;
+const Wrapper = styled.div`
+  .selects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -32,28 +30,35 @@ const TasteMusic = ({ createdAt, likeMusic }) => {
     setType,
     setYear,
     setMonth,
+    handleExit,
   } = useMusicClassification(likeMusic);
 
   const years = makeYearRange(createdAt);
+  const infoData = classificatedData.filter(genre => genre.percentage);
 
   return (
-    <>
+    <Wrapper>
       <Title title={title.tasteMusic} />
-      <SelectMaker name={"type"} options={dateTypes} setValue={setType} />
-      <div>
-        {type === dateType.year && <SelectMaker name={"year"} options={years} setValue={setYear} />}
-        {type === dateType.month && <SelectMaker name={"year"} options={years} setValue={setYear} />}
-        {type === dateType.month && <SelectMaker name={"month"} options={months} setValue={setMonth} />}
-      </div>
-      <Content>
-        {!!classificatedData.length && <TasteD3 tasteData={classificatedData} />}
-        {!!classificatedData.length && <TasteMusicInfo
+      {!classificatedData.length && <div className="selects" >
+        <SelectMaker name={"type"} options={dateTypes} setValue={setType} />
+        {!!type && <div className="inner-selects">
+          {type === dateType.year && <SelectMaker name={"year"} options={years} setValue={setYear} />}
+          {type === dateType.month && <SelectMaker name={"year"} options={years} setValue={setYear} />}
+          {type === dateType.month && <SelectMaker name={"month"} options={months} setValue={setMonth} />}
+        </div>}
+      </div>}
+      {!!classificatedData.length && <div>
+        <TasteD3
+          tasteData={classificatedData}
+          handleClick={handleExit}
+        />
+        <TasteMusicInfo
           year={year}
           month={month}
-          classificatedData={classificatedData}
-        />}
-      </Content>
-    </>
+          infoData={infoData}
+        />
+      </div>}
+    </Wrapper>
   );
 };
 

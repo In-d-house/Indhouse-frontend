@@ -6,9 +6,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px;
-  border-radius: 0.2rem;
-  min-width: 20rem;
+  padding: 7px;
+  margin-bottom: 7px;
+  min-width: 14rem;
+  max-width: 20rem;
 
   .photo {
     transition: 0.2s ease-out;
@@ -20,18 +21,18 @@ const Wrapper = styled.div`
     }
   }
 
-  .photo-title {
+  .music-title {
     bottom: 20px;
     left: 20px;
     padding: 0.5rem;
     color: ${({ theme }) => theme.colors.blue};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.musicTitle};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 
   .play {
     color: ${({ theme }) => theme.colors.black};
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
     transition: 0.2s ease-out;
 
@@ -46,13 +47,12 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     border-radius: 25px;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
   }
 
   button {
     background-color: ${({ theme }) => theme.colors.white};
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
     border-radius: 50%;
   }
 
@@ -77,13 +77,21 @@ const Wrapper = styled.div`
   }
 `;
 
+const substractString = string => {
+  if (string.length > 9) {
+    return `${string.substring(0, 9)}...`;
+  }
+
+  return string;
+};
+
 const Music = ({ info, isLike, onClick }) => {
   const [isClick, setIsClick] = useState(false);
 
   return (
     <Wrapper>
       <img className="photo" src={info.coverPhotoUrl} />
-      <span className="photo-title">{info.title}</span>
+      <span className="music-title">{substractString(info.title)}</span>
       <div>
         <a href="https://www.youtube.com/watch?v=SeyjlHw-8FA" target="_blank" rel="noopener noreferrer">
           {isLike && <span className="play">{isClick ? "Like!" : "PLAY"}</span>}

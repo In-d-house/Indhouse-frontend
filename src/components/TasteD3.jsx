@@ -2,32 +2,35 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as d3 from "d3";
 
+import { colorPallete } from "../constants";
+
 const Svg = styled.svg`
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 55%;
   width: 100%;
   height: 100%;
+  opacity: 0.5;
   transform: translate(-50%, -50%);
+`;
+
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.indigo};
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.strong};
+  z-index: 50;
 `;
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 const tooltipDuration = 200;
-const circleNums = 9 * (width / 20);
-const colorPallete = {
-  "Acoustic": "#788bff",
-  "Ballad": "#ffee93",
-  "R&B": "#0582ca",
-  "Pop": "#FF8401",
-  "Dance": "#76c893",
-  "Hiphop": "#A8B8D2",
-  "Rock": "#aa7dce",
-  "Electronic": "#DD44A0",
-  "Metal": "#FC6067",
-};
+const circleNums = 9 * (width / 25);
 
-const TasteD3 = ({ tasteData }) => {
+const TasteD3 = ({ tasteData, handleClick }) => {
   const d3Ref = useRef(null);
 
   useEffect(() => {
@@ -139,7 +142,10 @@ const TasteD3 = ({ tasteData }) => {
   }, [tasteData]);
 
   return (
-    <Svg ref={d3Ref} width={width} height={height} />
+    <>
+      <Svg ref={d3Ref} width={width} height={height} />
+      <Button onClick={handleClick} >TASTE EXIT</Button>
+    </>
   );
 };
 

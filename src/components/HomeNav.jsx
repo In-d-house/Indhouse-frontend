@@ -5,11 +5,10 @@ import styled from "styled-components";
 const Nav = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.indigo};
-  min-width: 16rem;
-  width: 20vw;
-  max-width: 20rem;
+  min-width: 15rem;
+  z-index: 20;
 
-  .sticky-box {
+  .fixed-box {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -17,12 +16,12 @@ const Nav = styled.div`
     top: 0;
     left: 0;
     height: 50vh;
-    padding: 3rem 2rem;
+    padding: 3rem 1.5rem;
   }
 
   .nav-header {
     color: ${({ theme }) => theme.colors.blue};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.medium};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
 
@@ -31,7 +30,7 @@ const Nav = styled.div`
     flex-direction: column;
     margin-top: 4rem;
     color: ${({ theme }) => theme.colors.gray};
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-size: ${({ theme }) => theme.fontSizes.small};
 
     a {
       padding: 0.2rem;
@@ -54,15 +53,15 @@ const Nav = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 3rem;
-    padding: 1rem 0.5rem;
-    border: 4px solid ${({ theme }) => theme.colors.blue};
+    padding: 1rem;
+    border: 3px solid ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.blue};
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
     transition: 0.2s ease-out;
 
     &:hover {
-      border: 4px solid ${({ theme }) => theme.colors.yellow};
+      border: 3px solid ${({ theme }) => theme.colors.yellow};
       color: ${({ theme }) => theme.colors.yellow};
     }
   }
@@ -71,7 +70,7 @@ const Nav = styled.div`
 const HomeNav = ({ userId }) => {
   return (
     <Nav>
-      <div className="sticky-box">
+      <div className="fixed-box">
         <Link className="nav-header" to="/" >In-d house</Link>
         <div className="nav-content">
           <Link to="/" >HOME</Link>
@@ -81,8 +80,8 @@ const HomeNav = ({ userId }) => {
         <div className="nav-content">
           <span>YOUR LIBRARY</span>
           <Link to={`/users/taste_music/${userId}`} >MUSIC TASTE</Link>
-          <Link to={`/users/favorite_music/${userId}`} >LIKE MUSIC</Link>
           <Link to={`/users/favorite_artist/${userId}`} >LIKE ARTIST</Link>
+          <Link to={`/users/favorite_music/${userId}`} >LIKE MUSIC</Link>
         </div>
         <Link className="find-taste" to={`/users/find_taste/${userId}` }>+ FIND TASTE</Link>
       </div>
