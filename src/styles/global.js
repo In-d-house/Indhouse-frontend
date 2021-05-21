@@ -20,14 +20,11 @@ const GlobalStyle = createGlobalStyle`
     display: none;
   }
 
-<<<<<<< HEAD
-=======
   button {
     cursor: pointer;
     border-radius: 0.2rem;
   }
 
->>>>>>> origin/develop
   a {
     text-decoration:none;
     color:inherit;

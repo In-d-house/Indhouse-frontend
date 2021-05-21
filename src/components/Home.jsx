@@ -14,10 +14,7 @@ import FavoriteArtist from "./LikeArtist";
 import MusicCreateForm from "./forms/MusicCreateForm";
 
 const Page = styled.div`
-<<<<<<< HEAD
-=======
   position: relative;
->>>>>>> origin/develop
   display: flex;
   background-color: ${({ theme }) => theme.colors.lightIndigo};
   min-width: 100vw;

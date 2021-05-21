@@ -3,16 +3,12 @@ import styled from "styled-components";
 import * as d3 from "d3";
 
 const Svg = styled.svg`
-<<<<<<< HEAD:src/components/D3.jsx
-  background-color: ${({ theme }) => theme.colors.lightIndigo};
-=======
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
->>>>>>> origin/develop:src/components/TasteD3.jsx
 `;
 
 const width = window.innerWidth;
