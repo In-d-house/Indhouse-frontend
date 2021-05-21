@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.lightIndigo};
   position: absolute;
   top: 2rem;
   right: 2rem;

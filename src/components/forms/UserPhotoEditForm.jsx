@@ -7,16 +7,20 @@ import { profileType } from "../../constants";
 
 const Wrapper = styled.div`
   .img-container {
+    color: ${({ theme }) => theme.colors.indigo};
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+    font-weight: ${({ theme }) => theme.fontWeights.strong};
     display: flex;
-    justify-content: space-between;
-    width: 25rem;
-    margin-top: 5rem;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 2rem;
   }
 
   .img-box {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     height: 15rem;
 
     span {
@@ -25,9 +29,24 @@ const Wrapper = styled.div`
     }
   }
 
+  .hidden-span {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
   img {
     width: 10rem;
     border-radius: 50%;
+  }
+
+  form {
+    input {
+      color: ${({ theme }) => theme.colors.indigo};
+    }
+
+    button {
+      font-size: ${({ theme }) => theme.fontSizes.small};
+      border: 1px solid black;
+    }
   }
 `;
 
@@ -84,12 +103,12 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
       <div className="img-container" >
         <div className="img-box" >
           <img src={photoUrl} />
-          <span>현재 이미지</span>
+          <span className="hidden-span">Current IMG</span>
         </div>
-        <div className="img-box" >
+        {previewUrl && <div className="img-box" >
           <img src={previewUrl} />
-          <span>변경할 이미지</span>
-        </div>
+          <span>Preview IMG</span>
+        </div>}
       </div>
       <form
         encType="multipart/form-data"

@@ -15,7 +15,7 @@ const FormBase = styled.div`
     width: 100%;
 
     h1 {
-      font-size: ${theme.fontSizes.authFormSize};
+      font-size: ${theme.fontSizes.miniTitleSize};
       font-weight: ${theme.fontWeights.medium};
       color: ${theme.colors.blue};
       text-align: left;

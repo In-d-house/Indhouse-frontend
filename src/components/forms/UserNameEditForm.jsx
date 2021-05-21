@@ -6,6 +6,17 @@ import * as actions from "../../reducers/user";
 import { profileType } from "../../constants";
 
 const Wrapper = styled.div`
+  margin-top: 1rem;
+
+  input {
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    border: 1px solid black;
+  }
+
+  button {
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    border: 1px solid black;
+  }
 `;
 
 const UserNameEditForm = ({ _id, currentName }) => {
@@ -23,7 +34,6 @@ const UserNameEditForm = ({ _id, currentName }) => {
 
   return (
     <Wrapper>
-      <span>{currentName}</span>
       <form onSubmit={handleSubmit} >
         <input
           type="text"

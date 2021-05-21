@@ -8,13 +8,14 @@ const Svg = styled.svg`
   left: 50%;
   width: 100%;
   height: 100%;
+  opacity: 0.4;
   transform: translate(-50%, -50%);
 `;
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 const tooltipDuration = 200;
-const circleNums = 9 * (width / 20);
+const circleNums = 9 * (width / 25);
 const colorPallete = {
   "Acoustic": "#788bff",
   "Ballad": "#ffee93",
