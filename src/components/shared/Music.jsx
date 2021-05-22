@@ -78,8 +78,8 @@ const Wrapper = styled.div`
 `;
 
 const substractString = string => {
-  if (string.length > 9) {
-    return `${string.substring(0, 9)}...`;
+  if (string.length > 8) {
+    return `${string.substring(0, 8)}...`;
   }
 
   return string;
