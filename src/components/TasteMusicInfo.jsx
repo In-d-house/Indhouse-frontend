@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { colorPallete } from "../constants";
-
 const Wrapper = styled.div`
   margin-left: 3rem;
 
   .date {
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes.tasteTitleSize};
+  }
+  .genres {
+    margin-top: 1rem;
   }
 
   .genre-info {
@@ -21,7 +22,7 @@ const TasteMusicInfo = ({ year, month, infoData }) => {
   return (
     <Wrapper>
       <span className="date">{`${year}. ${month}`}</span>
-      <div className="test">
+      <div className="genres">
         {infoData.map((genre, i) => {
           return (
             <div
