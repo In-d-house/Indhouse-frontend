@@ -12,9 +12,23 @@ import useMusicClassification from "../hooks/useMusicClassification";
 
 const Wrapper = styled.div`
   .selects {
+    background-color:  ${({ theme }) => theme.colors.white};
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: right;
+    width: 30rem;
+    margin-left: 3rem;
+    padding: 2rem;
+    color: ${({ theme }) => theme.colors.indigo};
+    border-radius: 0.2rem;
+  }
+
+  .inner-selects {
+    margin-top: 3rem;
+  }
+
+  .type-month {
+    display: flex;
   }
 `;
 
@@ -43,8 +57,10 @@ const TasteMusic = ({ createdAt, likeMusic }) => {
         <SelectMaker name={"type"} options={dateTypes} setValue={setType} />
         {!!type && <div className="inner-selects">
           {type === dateType.year && <SelectMaker name={"year"} options={years} setValue={setYear} />}
-          {type === dateType.month && <SelectMaker name={"year"} options={years} setValue={setYear} />}
-          {type === dateType.month && <SelectMaker name={"month"} options={months} setValue={setMonth} />}
+          {type === dateType.month && <div className="type-month">
+            <SelectMaker name={"year"} options={years} setValue={setYear} />
+            <SelectMaker name={"month"} options={months} setValue={setMonth} />
+          </div>}
         </div>}
       </div>}
       {!!classificatedData.length && <div>
