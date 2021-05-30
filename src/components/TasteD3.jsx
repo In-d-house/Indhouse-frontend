@@ -28,7 +28,7 @@ const Button = styled.button`
 const width = window.innerWidth;
 const height = window.innerHeight;
 const tooltipDuration = 200;
-const circleNums = 9 * (width / 25);
+const circleNums = 9 * (width / 20);
 
 const TasteD3 = ({ tasteData, handleClick }) => {
   const d3Ref = useRef(null);

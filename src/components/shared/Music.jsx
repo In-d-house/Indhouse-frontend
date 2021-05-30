@@ -93,7 +93,7 @@ const Music = ({ info, isLike, onClick }) => {
       <img className="photo" src={info.coverPhotoUrl} />
       <span className="music-title">{substractString(info.title)}</span>
       <div>
-        <a href="https://www.youtube.com/watch?v=SeyjlHw-8FA" target="_blank" rel="noopener noreferrer">
+        <a href={info.youtubeUrl} target="_blank" rel="noopener noreferrer">
           {isLike && <span className="play">{isClick ? "Like!" : "PLAY"}</span>}
           {!isLike && <span className="play">{isClick ? "Dislike!" : "PLAY"}</span>}
         </a>

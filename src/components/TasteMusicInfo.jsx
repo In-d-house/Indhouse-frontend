@@ -16,6 +16,14 @@ const Wrapper = styled.div`
     font-size: ${({ theme }) => theme.fontSizes.xl};
     font-weight: ${({ theme }) => theme.fontWeights.strong};
   }
+
+  .span-container {
+    display: flex;
+  }
+
+  .per {
+    font-size: ${({ theme }) => theme.fontSizes.small};
+  }
 `;
 
 const TasteMusicInfo = ({ year, month, infoData }) => {
@@ -29,7 +37,10 @@ const TasteMusicInfo = ({ year, month, infoData }) => {
               key={`${i}${genre.genre}`}
               className="genre-info"
             >
-              {`${genre.genre}: ${Math.round(genre.percentage)}`}
+              <span>
+                {`${genre.genre}: ${Math.round(genre.percentage)}`}
+              </span>
+              <span className="per">%</span>
             </div>
           );
         })}
