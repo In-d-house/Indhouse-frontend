@@ -48,12 +48,12 @@ const title = {
 const colorPallete = {
   "Acoustic": "#80ffdb",
   "Ballad": "#fdffb6",
-  "R&B": "#0582ca",
+  "R&B": "#bdb2ff",
   "Pop": "#FF8401",
   "Dance": "#90f1ef",
   "Hiphop": "#A8B8D2",
   "Rock": "#0582ca",
-  "Electronic": "#f94144",
+  "Electronic": "#ef233c",
   "Metal": "#343a40",
 };
 
