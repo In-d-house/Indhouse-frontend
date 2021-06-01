@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import makeArrayToQuery from "../utils/makeArrayQuery";
 
-const url = process.env.REACT_APP_LOCAL_URL;
+const url = process.env.REACT_APP_SERVER_URL;
 
 const loginLocal = async user => {
   try {
