@@ -36,7 +36,7 @@ function* editProfile({ payload }) {
 
     yield put(actions.editProfileSuccess(data));
   } catch (error) {
-    yield put(actions.editProfileFailure(error));
+    yield put(actions.requestFailure(error));
   }
 }
 
@@ -45,7 +45,7 @@ function* chooseGenre({ payload }) {
     const response = yield call(api.editUserLikeGenre, payload);
 
     if (!response.result) {
-      yield put(actions.chooseGenreFailure("error"));
+      yield put(actions.requestFailure("error"));
 
       return;
     }
@@ -53,7 +53,7 @@ function* chooseGenre({ payload }) {
     yield put(actions.chooseGenreSuccess(response.genres));
     history.push("/");
   } catch (error) {
-    yield put(actions.chooseGenreFailure(error));
+    yield put(actions.requestFailure(error));
   }
 }
 
@@ -63,7 +63,7 @@ function* likeMusic({ payload }) {
 
     yield put(actions.musicLikeSuccess({ musicId: music._id, createdAt: music.createdAt }));
   } catch (error) {
-    yield put(actions.musicLikeFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 
@@ -73,7 +73,7 @@ function* dislikeMusic({ payload }) {
 
     yield put(actions.musicDislikeSuccess({ musicId: music._id }));
   } catch (error) {
-    yield put(actions.musicDislikeFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 

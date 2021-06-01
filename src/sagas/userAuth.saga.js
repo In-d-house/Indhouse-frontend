@@ -15,12 +15,12 @@ function* loginLocal({ payload }) {
     const { profile, result, error } = yield call(api.loginLocal, payload);
 
     if (error) {
-      yield put(actions.loginFailure(error));
+      yield put(actions.requestFailure(error));
       return;
     }
 
     if (!result) {
-      yield put(actions.loginFailure(message.failLogin));
+      yield put(actions.requestFailure(message.failLogin));
       return;
     }
 
@@ -34,7 +34,7 @@ function* loginLocal({ payload }) {
       history.push(`/users/choose_genre/${profile._id}`);
     }
   } catch (error) {
-    yield put(actions.loginFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 
@@ -44,12 +44,12 @@ function* loginSocial({ payload }) {
     const { profile, result, error } = yield call(api.loginSocial, user);
 
     if (error) {
-      yield put(actions.loginFailure(error));
+      yield put(actions.requestFailure(error));
       return;
     }
 
     if (!result) {
-      yield put(actions.loginFailure(message.failLogin));
+      yield put(actions.requestFailure(message.failLogin));
       return;
     }
 
@@ -63,7 +63,7 @@ function* loginSocial({ payload }) {
       history.push(`/users/choose_genre/${profile._id}`);
     }
   } catch (error) {
-    yield put(actions.loginFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 
@@ -77,7 +77,7 @@ function* loginRefresh({ payload }) {
       history.push(`/users/choose_genre/${profile._id}`);
     }
   } catch (error) {
-    yield put(actions.loginFailure(error.message));
+    yield put(actions.requestFailure(error.message));
 
     localStorage.removeItem("user");
   }
@@ -88,12 +88,12 @@ function* signup({ payload }) {
     const { result, error } = yield call(api.signup, payload);
 
     if (error) {
-      yield put(actions.signupFailure(error));
+      yield put(actions.requestFailure(error));
       return;
     }
 
     if (!result) {
-      yield put(actions.signupFailure(message.failSignup));
+      yield put(actions.requestFailure(message.failSignup));
       return;
     }
 
@@ -101,7 +101,7 @@ function* signup({ payload }) {
 
     history.push("/login");
   } catch (error) {
-    yield put(actions.signupFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 
@@ -110,12 +110,12 @@ function* logout({ payload }) {
     const { result, error } = yield api.logout(payload);
 
     if (error) {
-      yield put(actions.logoutFailure(error));
+      yield put(actions.requestFailure(error));
       return;
     }
 
     if (!result) {
-      yield put(actions.logoutFailure(message.failLogout));
+      yield put(actions.requestFailure(message.failLogout));
       return;
     }
 
@@ -125,7 +125,7 @@ function* logout({ payload }) {
 
     history.push("/");
   } catch (error) {
-    yield put(actions.logoutFailure(error.message));
+    yield put(actions.requestFailure(error.message));
   }
 }
 
