@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Title from "./shared/Title";
@@ -76,6 +77,14 @@ const TasteMusic = ({ createdAt, likeMusic }) => {
       </div>}
     </Wrapper>
   );
+};
+
+TasteMusic.propTypes = {
+  createdAt: PropTypes.string.isRequired,
+  likeMusic: PropTypes.arrayOf(PropTypes.shape({
+    genreId: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  })).isRequired,
 };
 
 export default TasteMusic;

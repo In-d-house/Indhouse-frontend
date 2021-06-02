@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -107,6 +108,17 @@ const Music = ({ info, isLike, onClick }) => {
       </div>
     </Wrapper>
   );
+};
+
+Music.propTypes = {
+  info: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    coverPhotoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    youtubeUrl: PropTypes.string.isRequired,
+  }),
+  isLike: PropTypes.bool.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Music;
