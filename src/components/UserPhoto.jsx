@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -19,6 +20,10 @@ const UserPhoto = ({ photo }) => {
       <img src={photo}></img>
     </Wrapper>
   );
+};
+
+UserPhoto.propTypes = {
+  photo: PropTypes.string.isRequired,
 };
 
 export default UserPhoto;

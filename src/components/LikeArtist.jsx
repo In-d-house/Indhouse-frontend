@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import * as d3 from "d3";
 import cloud from "d3-cloud";
@@ -80,6 +81,13 @@ const FavoriteArtist = ({ likeMusic }) => {
       </div>
     </Wrapper>
   );
+};
+
+FavoriteArtist.propTypes = {
+  likeMusic: PropTypes.arrayOf(PropTypes.shape({
+    genreId: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  })).isRequired,
 };
 
 export default FavoriteArtist;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Title from "./shared/Title";
 import Music from "./shared/Music";
@@ -30,6 +31,18 @@ const TasteFind = ({ likeGenre, likeMusic }) => {
       </GridBox>
     </>
   );
+};
+
+TasteFind.propTypes = {
+  likeGenre: PropTypes.arrayOf(PropTypes.shape({
+    createdAt: PropTypes.string.isRequired,
+    musicId: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  })),
+  likeMusic: PropTypes.arrayOf(PropTypes.shape({
+    genreId: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+  })).isRequired,
 };
 
 export default TasteFind;

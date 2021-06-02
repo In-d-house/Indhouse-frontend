@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -8,6 +9,7 @@ const Wrapper = styled.div`
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSizes.tasteTitleSize};
   }
+
   .genres {
     margin-top: 1rem;
   }
@@ -47,6 +49,15 @@ const TasteMusicInfo = ({ year, month, infoData }) => {
       </div>
     </Wrapper>
   );
+};
+
+TasteMusicInfo.propTypes = {
+  infoData: PropTypes.arrayOf(PropTypes.shape({
+    genre: PropTypes.string.isRequired,
+    percentage: PropTypes.number.isRequired,
+  })),
+  month: PropTypes.string,
+  year: PropTypes.string,
 };
 
 export default TasteMusicInfo;

@@ -7,6 +7,10 @@ const initialState = {
 };
 
 const reducers = {
+  requestFailure: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
   localLoginRequest: state => {
     state.isLoading = true;
   },
@@ -20,20 +24,11 @@ const reducers = {
     state.profile = action.payload;
     state.isLoading = false;
   },
-  loginFailure: (state, action) => {
-    state.profile = null;
-    state.isLoading = false;
-    state.error = action.payload;
-  },
   signupRequest: state => {
     state.isLoading = true;
   },
   signupSuccess: state => {
     state.isLoading = false;
-  },
-  signupFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
   },
   logoutRequest: state => {
     state.isLoading = true;
@@ -42,20 +37,12 @@ const reducers = {
     state.profile = null;
     state.isLoading = false;
   },
-  logoutFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
-  },
   editProfileRequest: state => {
     state.isLoading = true;
   },
   editProfileSuccess: (state, action) => {
     state.profile[action.payload.type] = action.payload.data;
     state.isLoading = false;
-  },
-  editProfileFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
   },
   chooseGenreRequest: state => {
     state.isLoading = true;
@@ -64,20 +51,12 @@ const reducers = {
     state.isLoading = false;
     state.profile.likeGenre = action.payload;
   },
-  chooseGenreFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
-  },
   musicLikeRequest: state => {
     state.isLoading = true;
   },
   musicLikeSuccess: (state, action) => {
     state.isLoading = false;
     state.profile.likeMusic = [...state.profile.likeMusic, action.payload];
-  },
-  musicLikeFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
   },
   musicDislikeRequest: state => {
     state.isLoading = true;
@@ -86,10 +65,6 @@ const reducers = {
     state.isLoading = false;
     state.profile.likeMusic = state.profile.likeMusic
       .filter(music => music.musicId !== action.payload.musicId);
-  },
-  musicDislikeFailure: (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
   },
 };
 
@@ -100,29 +75,23 @@ const userSlice = createSlice({
 });
 
 export const {
+  requestFailure,
   localLoginRequest,
   socialLoginRequest,
   refreshLoginRequest,
   loginSuccess,
-  loginFailure,
   logoutRequest,
   logoutSuccess,
-  logoutFailure,
   signupRequest,
   signupSuccess,
-  signupFailure,
   editProfileRequest,
   editProfileSuccess,
-  editProfileFailure,
   chooseGenreRequest,
   chooseGenreSuccess,
-  chooseGenreFailure,
   musicLikeRequest,
   musicLikeSuccess,
-  musicLikeFailure,
   musicDislikeRequest,
   musicDislikeSuccess,
-  musicDislikeFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

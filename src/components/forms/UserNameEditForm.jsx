@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -45,6 +46,11 @@ const UserNameEditForm = ({ _id, currentName }) => {
       </form>
     </Wrapper>
   );
+};
+
+UserNameEditForm.propTypes = {
+  _id: PropTypes.string.isRequired,
+  currentName: PropTypes.string.isRequired,
 };
 
 export default UserNameEditForm;
