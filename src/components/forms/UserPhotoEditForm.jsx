@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -126,6 +127,11 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
       </form>
     </Wrapper>
   );
+};
+
+UserPhotoEditForm.propTypes = {
+  _id: PropTypes.string.isRequired,
+  photoUrl: PropTypes.string.isRequired,
 };
 
 export default UserPhotoEditForm;

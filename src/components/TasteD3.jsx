@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import * as d3 from "d3";
 
@@ -147,6 +148,14 @@ const TasteD3 = ({ tasteData, handleClick }) => {
       <Button onClick={handleClick} >TASTE EXIT</Button>
     </>
   );
+};
+
+TasteD3.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  tasteData: PropTypes.arrayOf(PropTypes.shape({
+    genre: PropTypes.string.isRequired,
+    percentage: PropTypes.number.isRequired,
+  })),
 };
 
 export default TasteD3;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const MusicCoverForm = ({ setPhoto }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -44,6 +45,10 @@ const MusicCoverForm = ({ setPhoto }) => {
       <img src={previewUrl} />
     </>
   );
+};
+
+MusicCoverForm.propTypes = {
+  setPhoto: PropTypes.func,
 };
 
 export default MusicCoverForm;

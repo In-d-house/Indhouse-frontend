@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -42,6 +43,12 @@ const SelectMaker = ({ name, options, setValue }) => {
       </Select>
     </Wrapper>
   );
+};
+
+SelectMaker.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string),
+  setValue: PropTypes.func,
 };
 
 export default SelectMaker;

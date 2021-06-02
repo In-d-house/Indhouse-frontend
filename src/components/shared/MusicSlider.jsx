@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Music from "./Music";
@@ -37,6 +38,16 @@ const MusicSlider = ({ musics, isLike }) => {
       ))}
     </Wrapper>
   );
+};
+
+MusicSlider.propTypes = {
+  isLike: PropTypes.bool.isRequired,
+  musics: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    coverPhotoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    youtubeUrl: PropTypes.string.isRequired,
+  }),
 };
 
 export default MusicSlider;
