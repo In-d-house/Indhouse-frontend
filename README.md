@@ -13,22 +13,25 @@
 📺 [유튜브 데모 발표 영상](https://youtu.be/F8OHnevCS30) 4시간 26분 부터 데모 발표 시작</br>
 🖥 [배포 주소](www.indhouse.club)
 
-#### 선호 장르에 기반한 음악 추천 페이지
+- ### 선호 장르에 기반한 음악 추천 페이지
 유저가 첫 로그인시 선택한 장르를 기반으로 추천 음악을 제공합니다.
 <img src="https://drive.google.com/uc?id=1Evl-omDa3w-AFO7fNbFiHxTHzB1M3LwA" alt="main-page">
 </br>
+</br>
 
-#### 협업 필터링에 기반한 음악 추천 페이지
+- ### 협업 필터링에 기반한 음악 추천 페이지
 유저 간 취향 상관도를 비교하여 상관도가 가장 높은 유저들이 좋아하는 추천 음악을 제공합니다.
 <img src="https://drive.google.com/uc?id=187iG4YzAdxQwez8R-ACXrnWhIKsRkaft" alt="recommend-page">
 </br>
+</br>
 
-#### 가수 시각화 페이지
+- ### 가수 시각화 페이지
 유저 간 취향 상관도를 비교하여 상관도가 가장 높은 유저들이 좋아하는 추천 음악을 제공합니다.
 <img src="https://drive.google.com/uc?id=1eSIXfklMZGqwZsIuV1kpk2IALdd7s174" alt="artist-visualization-page">
 </br>
+</br>
 
-#### 취향 시각화 페이지
+- ### 취향 시각화 페이지
 유저가 좋아하는 음악의 장르를 기간별로 분류하여 특정 기간의 내 취향을 확인할 수 있도록 시각적으로 제공합니다.
 <img src="https://drive.google.com/uc?id=1LEOaQeODGGlN2NlpXdEkKz3B0zdIrtBm" alt="taste-visualization-page">
 
