@@ -11,7 +11,7 @@
 # Preview
 
 📺 [유튜브 데모 발표 영상](https://youtu.be/F8OHnevCS30) 4시간 26분 부터 데모 발표 시작</br>
-🖥 [배포 주소](www.indhouse.club)
+🖥 [배포 주소](https://www.indhouse.club)
 
 - ### 선호 장르에 기반한 음악 추천 페이지
 유저가 첫 로그인시 선택한 장르를 기반으로 추천 음악을 제공합니다.
