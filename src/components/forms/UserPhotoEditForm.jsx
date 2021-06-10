@@ -103,7 +103,7 @@ const UserPhotoEditForm = ({ _id, photoUrl }) => {
     <Wrapper>
       <div className="img-container" >
         <div className="img-box" >
-          <img src={photoUrl} />
+          <img src={photoUrl} alt="current_Photo" />
           <span className="hidden-span">Current IMG</span>
         </div>
         {previewUrl && <div className="img-box" >
