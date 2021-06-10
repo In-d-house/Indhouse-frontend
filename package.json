@@ -5,9 +5,6 @@
   "dependencies": {
     "@hookform/resolvers": "^2.4.0",
     "@reduxjs/toolkit": "^1.5.1",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "d3": "^6.7.0",
     "d3-cloud": "^1.2.5",
     "dotenv": "^8.2.0",
@@ -52,10 +49,14 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

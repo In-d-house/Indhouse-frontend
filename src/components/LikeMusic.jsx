@@ -10,7 +10,7 @@ import useGetLikeMusic from "../hooks/useGetLikeMusic";
 import useLike from "../hooks/useLike";
 import { title } from "../constants";
 
-const FavoriteMusic = ({ likeMusic }) => {
+const LikeMusic = ({ likeMusic }) => {
   const displayMusic = useGetLikeMusic(likeMusic);
   const handleLike = useLike();
 
@@ -33,11 +33,11 @@ const FavoriteMusic = ({ likeMusic }) => {
   );
 };
 
-FavoriteMusic.propTypes = {
+LikeMusic.propTypes = {
   likeMusic: PropTypes.arrayOf(PropTypes.shape({
     genreId: PropTypes.string.isRequired,
     _id: PropTypes.string,
   })).isRequired,
 };
 
-export default FavoriteMusic;
+export default LikeMusic;

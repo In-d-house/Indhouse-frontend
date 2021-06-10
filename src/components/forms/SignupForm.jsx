@@ -46,7 +46,7 @@ const SignupForm = () => {
       <FormBase>
         <div className="title" >
           <h1>Create</h1>
-          <h1>Accout</h1>
+          <h1>Account</h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-input" >
